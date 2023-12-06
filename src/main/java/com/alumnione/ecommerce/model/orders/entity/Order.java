@@ -19,8 +19,8 @@ public class Order {
   @Column(name = "id_order")
   private Long orderId;
 
-  @Column(name = "user_id")
-  private Long userId;
+  @Column(name = "user_id") // TODO: debería ser un FK (relacionado con Usuarios) - > también se tiene que hacer una alteración en las migracioness de la base de datos	para que sea un FK (relacionado con Usuarios)
+  private Long userId; 
 
   @Column(name = "product_id")
   private Long productId;
