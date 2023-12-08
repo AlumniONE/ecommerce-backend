@@ -5,7 +5,3 @@ CREATE TABLE orders(
   order_created_at DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
   order_status JSON NULL
 );
-
-ALTER TABLE orders
-ADD CONSTRAINT orders_users_id_fk
-FOREIGN KEY (user_id) REFERENCES users (id_user);
