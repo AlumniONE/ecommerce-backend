@@ -1,5 +1,7 @@
 package com.alumnione.ecommerce.model.orders.entity;
 
+import com.alumnione.ecommerce.model.user.entity.User;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,8 +21,9 @@ public class Order {
   @Column(name = "id_order")
   private Long orderId;
 
-  @Column(name = "user_id") // TODO: debería ser un FK (relacionado con Usuarios) - > también se tiene que hacer una alteración en las migracioness de la base de datos	para que sea un FK (relacionado con Usuarios)
-  private Long userId; 
+  @ManyToOne
+  @JoinColumn(name = "user_id", referencedColumnName = "id_user")
+  private User user;
 
   @Column(name = "product_id")
   private Long productId;
@@ -30,5 +33,4 @@ public class Order {
 
   @Column(name = "order_created_at")
   private String orderCreatedAt;
-
 }

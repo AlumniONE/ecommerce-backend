@@ -1,5 +1,10 @@
 package com.alumnione.ecommerce.model.user.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.alumnione.ecommerce.model.orders.entity.Order;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +23,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
     private Long userId;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Order> orders = new HashSet<>();
 
     @Column(name = "first_name")
     private String firstName;
