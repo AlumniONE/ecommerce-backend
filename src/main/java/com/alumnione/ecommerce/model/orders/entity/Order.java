@@ -3,6 +3,7 @@ package com.alumnione.ecommerce.model.orders.entity;
 import java.util.List;
 
 import com.alumnione.ecommerce.model.cellphone.entity.Cellphone;
+import com.alumnione.ecommerce.model.invoice.entity.Invoice;
 import com.alumnione.ecommerce.model.user.entity.User;
 
 import jakarta.persistence.*;
@@ -41,4 +42,9 @@ public class Order {
 
   @Column(name = "order_created_at")
   private String orderCreatedAt;
+
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "invoice_id")
+  private Invoice invoice;
+
 }
