@@ -1,5 +1,8 @@
 package com.alumnione.ecommerce.model.orders.entity;
 
+import java.util.List;
+
+import com.alumnione.ecommerce.model.cellphone.entity.Cellphone;
 import com.alumnione.ecommerce.model.user.entity.User;
 
 import jakarta.persistence.*;
@@ -25,8 +28,13 @@ public class Order {
   @JoinColumn(name = "user_id", referencedColumnName = "id_user")
   private User user;
 
-  @Column(name = "product_id")
-  private Long productId;
+  @ManyToMany
+  @JoinTable(
+    name = "cellphones",
+    joinColumns = @JoinColumn(name = "product_id"),
+    inverseJoinColumns = @JoinColumn(name = "id")
+  )
+  private List<Cellphone> productId;
 
   @Column(name = "order_status")
   private String orderStatus;
