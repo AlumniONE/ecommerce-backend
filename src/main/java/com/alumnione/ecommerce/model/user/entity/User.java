@@ -3,6 +3,7 @@ package com.alumnione.ecommerce.model.user.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.alumnione.ecommerce.model.cart.entity.Cart;
 import com.alumnione.ecommerce.model.orders.entity.Order;
 
 import jakarta.persistence.*;
@@ -41,5 +42,9 @@ public class User {
 
     @Column(name = "user_type")
     private String userType;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
 }
