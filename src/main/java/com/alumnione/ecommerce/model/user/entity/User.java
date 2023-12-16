@@ -7,6 +7,7 @@ import com.alumnione.ecommerce.model.cart.entity.Cart;
 import com.alumnione.ecommerce.model.orders.entity.Order;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,15 +26,13 @@ public class User {
     @Column(name = "id_user")
     private Long userId;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Order> orders = new HashSet<>();
-
     @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
 
+    @Email()
     private String email;
 
     private String password;
@@ -43,8 +42,10 @@ public class User {
     @Column(name = "user_type")
     private String userType;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cart_id")
+    @OneToMany(mappedBy = "user")
+    private Set<Order> orders = new HashSet<>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
     private Cart cart;
 
 }
