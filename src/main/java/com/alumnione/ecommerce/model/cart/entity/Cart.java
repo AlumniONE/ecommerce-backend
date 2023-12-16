@@ -1,19 +1,16 @@
 package com.alumnione.ecommerce.model.cart.entity;
 
-import java.time.LocalDateTime;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.alumnione.ecommerce.model.user.entity.User;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "cart")
+@Table(name = "carts")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -21,15 +18,17 @@ import lombok.Setter;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
-
-    // TODO: Agregar relacion con User
-    // private User user;
 
     // TODO: Agregar relación con Cellphone
     // private Map<Cellphone, Integer> cellphones;
 
     @Column(name = "last_update")
-    private LocalDateTime lastUpdated;  
+    private LocalDateTime lastUpdated;
 
-} 
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+}
