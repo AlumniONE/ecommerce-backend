@@ -1,5 +1,5 @@
 CREATE TABLE orders(
-  id_order BIGINT AUTO_INCREMENT PRIMARY KEY,
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
   user_id BIGINT NOT NULL,
   product_id INT NULL,
   order_created_at DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
@@ -8,4 +8,4 @@ CREATE TABLE orders(
 
 ALTER TABLE orders
 ADD CONSTRAINT orders_users_id_fk
-FOREIGN KEY (user_id) REFERENCES users (id_user);
+FOREIGN KEY (user_id) REFERENCES users (id);

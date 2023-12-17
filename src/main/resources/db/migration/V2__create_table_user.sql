@@ -1,5 +1,5 @@
 CREATE TABLE users(
-    id_user BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(20),
     last_name VARCHAR(20),
     email VARCHAR(30),

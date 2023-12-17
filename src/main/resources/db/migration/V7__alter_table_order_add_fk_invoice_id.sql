@@ -3,4 +3,4 @@ alter table orders
 
 alter table orders
     add constraint orders_invoice_id_invoice_fk
-        foreign key (invoice_id) references invoice (id_invoice);
+        foreign key (invoice_id) references invoices (id);
