@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.model.orders.dto;
+package com.alumnione.ecommerce.model.order.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.alumnione.ecommerce.model.cart.entity.Cart;
-import com.alumnione.ecommerce.model.orders.entity.Order;
+import com.alumnione.ecommerce.model.order.entity.Order;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

@@ -1,5 +1,6 @@
 package com.alumnione.ecommerce.model.invoice.entity;
 
+import com.alumnione.ecommerce.model.order.entity.Order;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,8 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "invoice")
-@Setter
-@Getter
+@Setter@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Invoice {
@@ -23,15 +23,13 @@ public class Invoice {
     @Column(name = "invoice_date")
     private LocalDateTime invoiceDate;
 
-    /*
-    TODO: Agregar relacion con Order (Pedidos)
-     private Long orderId
-    */
-
     @Column(name = "total_amount")
     private double totalAmount;
 
-    /*
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "order_id")
+    private Order order;
+        /*
     TODO: Agregar relacion con Payments
     private Long idPayment;
     */
