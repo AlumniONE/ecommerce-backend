@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.model.user.dto;
+package com.alumnione.ecommerce.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.model.invoice.dto;
+package com.alumnione.ecommerce.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;

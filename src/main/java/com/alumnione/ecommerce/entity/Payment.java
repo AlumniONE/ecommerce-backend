@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.model.payment.entity;
+package com.alumnione.ecommerce.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,10 +1,6 @@
-package com.alumnione.ecommerce.model.order.entity;
+package com.alumnione.ecommerce.entity;
 
 import java.util.List;
-
-import com.alumnione.ecommerce.model.cellphone.entity.Cellphone;
-import com.alumnione.ecommerce.model.invoice.entity.Invoice;
-import com.alumnione.ecommerce.model.user.entity.User;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
