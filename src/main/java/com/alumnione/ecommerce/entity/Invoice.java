@@ -1,6 +1,5 @@
-package com.alumnione.ecommerce.model.invoice.entity;
+package com.alumnione.ecommerce.entity;
 
-import com.alumnione.ecommerce.model.order.entity.Order;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

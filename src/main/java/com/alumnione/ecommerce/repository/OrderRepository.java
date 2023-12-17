@@ -1,6 +1,6 @@
-package com.alumnione.ecommerce.model.order.repository;
+package com.alumnione.ecommerce.repository;
 
-import com.alumnione.ecommerce.model.order.entity.Order;
+import com.alumnione.ecommerce.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

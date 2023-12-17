@@ -1,6 +1,5 @@
-package com.alumnione.ecommerce.model.cart.entity;
+package com.alumnione.ecommerce.entity;
 
-import com.alumnione.ecommerce.model.user.entity.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

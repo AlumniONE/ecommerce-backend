@@ -1,10 +1,10 @@
-package com.alumnione.ecommerce.model.user.entity;
+package com.alumnione.ecommerce.entity;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import com.alumnione.ecommerce.model.cart.entity.Cart;
-import com.alumnione.ecommerce.model.order.entity.Order;
+import com.alumnione.ecommerce.entity.Cart;
+import com.alumnione.ecommerce.entity.Order;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

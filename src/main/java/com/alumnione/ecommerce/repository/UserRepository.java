@@ -1,6 +1,6 @@
-package com.alumnione.ecommerce.model.user.repository;
+package com.alumnione.ecommerce.repository;
 
-import com.alumnione.ecommerce.model.user.entity.User;
+import com.alumnione.ecommerce.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

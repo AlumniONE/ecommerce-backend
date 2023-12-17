@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.model.cellphone.dto;
+package com.alumnione.ecommerce.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

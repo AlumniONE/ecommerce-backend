@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.model.cellphone.entity;
+package com.alumnione.ecommerce.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
