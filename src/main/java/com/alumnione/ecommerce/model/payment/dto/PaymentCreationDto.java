@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.model.payments.dto;
+package com.alumnione.ecommerce.model.payment.dto;
 
 public record PaymentCreationDto(
         String paymentType

@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.model.orders.entity;
+package com.alumnione.ecommerce.model.order.entity;
 
 import java.util.List;
 
@@ -43,8 +43,7 @@ public class Order {
   @Column(name = "order_created_at")
   private String orderCreatedAt;
 
-  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "invoice_id")
+  @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
   private Invoice invoice;
 
 }
