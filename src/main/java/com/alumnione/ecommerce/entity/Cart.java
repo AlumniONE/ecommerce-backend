@@ -23,7 +23,7 @@ public class Cart {
     // TODO: Agregar relación con Cellphone
     // private Map<Cellphone, Integer> cellphones;
 
-    @Column(name = "last_update")
+    @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
     @OneToOne(orphanRemoval = true)
