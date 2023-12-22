@@ -1,5 +1,6 @@
 package com.alumnione.ecommerce.service;
 
+import com.alumnione.ecommerce.dto.PaymentDto;
 import com.alumnione.ecommerce.entity.Payment;
 import com.alumnione.ecommerce.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,33 +19,35 @@ public class PaymentService implements IPaymentService {
     private final PaymentRepository paymentRepository;
 
     @Override
-    public ResponseEntity<List<Payment>> getAllPayments() {
-        return new ResponseEntity<>(paymentRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<Payment> createPayment(Payment payment) {
+        return new ResponseEntity<>(paymentRepository.save(payment), HttpStatus.OK);
     }
 
     @Override
-    public void savePayment(Payment payment) {
-        paymentRepository.save(payment);
+    public ResponseEntity<String> getPayment(Long id) {
+        return null;
+
     }
 
     @Override
-    public ResponseEntity<Payment> getPayment(long id) {
-        if (!paymentRepository.existsById(id)) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        else return new ResponseEntity<>(paymentRepository.getReferenceById(id), HttpStatus.OK);
+    public ResponseEntity<PaymentDto> updatePayment(PaymentDto paymentDto) {
+        return null;
     }
 
     @Override
-    public void deletePayment(long id) {
+    public ResponseEntity<String> deletePayment(Long id) {
         paymentRepository.deleteById(id);
+        return new ResponseEntity<>("Object Deleted", HttpStatus.OK);
+
     }
 
     @Override
-    public ResponseEntity<Payment> updatePayment(Payment payment) {
-        return null;
+    public ResponseEntity<List<String>> getAllPayments() {
+        return new ResponseEntity<>(paymentRepository.findAll().stream().map(Payment::getPaymentType).toList(), HttpStatus.OK);
     }
 
     @Override
-    public Page<Payment> listByPage(long pageNum) {
-        return null;
+    public ResponseEntity<Optional<Payment>> getPaymentById(Long id) {
+        return new ResponseEntity<>(paymentRepository.findById(id), HttpStatus.OK);
     }
 }

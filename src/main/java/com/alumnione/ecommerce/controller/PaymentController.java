@@ -1,15 +1,14 @@
 package com.alumnione.ecommerce.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.alumnione.ecommerce.entity.Payment;
+import com.alumnione.ecommerce.service.PaymentService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 // TODO: cambiar el valor de retorno por el valor correcto (DTO)
 // TODO: agregar la validacion de los datos de entrada
@@ -21,17 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/payments") // TODO: cambiar el nombre del recurso
 public class PaymentController {
 
-    @PostMapping
-    public ResponseEntity<String> createPayment() {
-        return null;
+    private final PaymentService paymentService;
+
+    @PostMapping("/createPayment")
+    public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
+        return paymentService.createPayment(payment);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> getPaymentById(@PathVariable Long id) {
-        return null;
+    public ResponseEntity<Optional<Payment>> getPaymentById(@PathVariable Long id) {
+        return paymentService.getPaymentById(id);
     }
 
     @PutMapping("/{id}")
@@ -41,11 +43,10 @@ public class PaymentController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePayment(@PathVariable Long id) {
-        return null;
+        return paymentService.deletePayment(id);
     }
-
     @GetMapping("/all")
-    public ResponseEntity<List<String>> getAllPayments() { 
-        return null;
+    public ResponseEntity<List<String>> getAllPayments() {
+        return paymentService.getAllPayments();
     }
 }

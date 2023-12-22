@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "idPayment")
+@EqualsAndHashCode(of = "id")
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_payment")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "payment_type")
