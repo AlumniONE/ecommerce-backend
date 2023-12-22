@@ -31,7 +31,7 @@ public class Order {
     private Invoice invoice;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id_user")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @ManyToMany
