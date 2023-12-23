@@ -16,7 +16,7 @@ public record CellphoneCreationDto(
 
     @NotNull(message = "Price is required")
     @PositiveOrZero(message = "Price must be positive or zero")
-    double price,
+    Double price,
     
     @Size(max = 100, message = "Internal storage must not exceed 100 characters")
     String internalStorage,
@@ -50,7 +50,7 @@ public record CellphoneCreationDto(
 
     @NotNull(message = "Stock is required")
     @PositiveOrZero(message = "Stock must be positive or zero")
-    int stock,
+    Integer stock,
 
     @Size(max = 20, message = "Launch date must not exceed 20 characters")
     String launchDate,
