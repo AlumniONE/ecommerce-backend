@@ -6,11 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Data
 @Table(name = "cellphones")
 @Entity
 @Setter
@@ -20,13 +18,17 @@ import lombok.Setter;
 public class Cellphone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; 
-    
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "brand")
     private String brand;
 
+    @Column(name = "model")
     private String model;
 
-    private double price;
+    @Column(name = "price")
+    private Double price;
 
     @Column(name = "internal_storage")
     private String internalStorage;
@@ -49,16 +51,21 @@ public class Cellphone {
     @Column(name = "front_camera")
     private String frontCamera;
 
+    @Column(name = "battery")
     private String battery;
 
+    @Column(name = "connectivity")
     private String connectivity;
 
+    @Column(name = "color")
     private String color;
 
-    private int stock;
+    @Column(name = "stock")
+    private Integer stock;
 
     @Column(name = "launch_date")
     private String launchDate;
 
+    @Column(name = "image")
     private String image;
 }
