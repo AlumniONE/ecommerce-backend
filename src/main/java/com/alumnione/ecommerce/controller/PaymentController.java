@@ -3,10 +3,10 @@ package com.alumnione.ecommerce.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.alumnione.ecommerce.dto.PaymentDto;
 import com.alumnione.ecommerce.entity.Payment;
-import com.alumnione.ecommerce.service.PaymentService;
+import com.alumnione.ecommerce.service.PaymentServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,15 +24,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/payments") // TODO: cambiar el nombre del recurso
 public class PaymentController {
 
-    private final PaymentService paymentService;
+    private final PaymentServiceImpl paymentService;
 
     @PostMapping("/createPayment")
-    public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
-        return paymentService.createPayment(payment);
+    public ResponseEntity<String> createPayment(@RequestBody PaymentDto paymentDto) {
+        return paymentService.createPayment(paymentDto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Payment>> getPaymentById(@PathVariable Long id) {
+    public ResponseEntity<String> getPaymentById(@PathVariable Long id) {
         return paymentService.getPaymentById(id);
     }
 
