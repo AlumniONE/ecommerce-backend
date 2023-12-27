@@ -37,8 +37,8 @@ public class PaymentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updatePayment(@PathVariable Long id) {
-        return null;
+    public ResponseEntity<String> updatePayment(@PathVariable Long id, @RequestBody PaymentDto paymentDto) {
+        return paymentService.updatePayment(id,paymentDto);
     }
 
     @DeleteMapping("/{id}")

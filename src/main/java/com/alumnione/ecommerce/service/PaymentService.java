@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface PaymentService {
 
     public ResponseEntity<String> createPayment(PaymentDto paymentDto);
-    public ResponseEntity<String> updatePayment(PaymentDto paymentDto);
+    public ResponseEntity<String> updatePayment(Long id, PaymentDto paymentDto);
     public ResponseEntity<?> deletePayment(Long id);
     public ResponseEntity<List<String>> getAllPayments();
     public ResponseEntity<String> getPaymentById(Long id);
