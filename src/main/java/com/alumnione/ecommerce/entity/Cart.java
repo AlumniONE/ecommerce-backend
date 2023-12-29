@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,11 +29,13 @@ public class Cart {
             joinColumns = @JoinColumn(name = "cart_id"),
             inverseJoinColumns = @JoinColumn(name = "cellphone_id")
     )
-    private Set<Cellphone> cellphones;
+    //list to get the cellphones in order
+    private List<Cellphone> cellphones;
 
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
+    //TODO: remove this!!!
     @JsonIgnore //error (user -> order -> invoice) SQL Error: 1146, SQLState: 42S02, Table 'ecommerce_backend_local.invoice' doesn't exist
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "user_id")
