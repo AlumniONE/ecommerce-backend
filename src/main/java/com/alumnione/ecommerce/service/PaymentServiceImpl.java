@@ -3,7 +3,6 @@ package com.alumnione.ecommerce.service;
 import com.alumnione.ecommerce.dto.PaymentDto;
 import com.alumnione.ecommerce.entity.Payment;
 import com.alumnione.ecommerce.repository.PaymentRepository;
-import com.alumnione.ecommerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +17,6 @@ import java.util.Optional;
 public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
-    private final UserRepository userRepository;
 
     @Override
     public ResponseEntity<String> createPayment(PaymentDto paymentDto) {
