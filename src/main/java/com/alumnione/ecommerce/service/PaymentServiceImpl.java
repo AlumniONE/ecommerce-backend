@@ -3,16 +3,13 @@ package com.alumnione.ecommerce.service;
 import com.alumnione.ecommerce.dto.PaymentDto;
 import com.alumnione.ecommerce.entity.Payment;
 import com.alumnione.ecommerce.repository.PaymentRepository;
-import com.alumnione.ecommerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +17,6 @@ import java.util.Optional;
 public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
-    private final UserRepository userRepository;
 
     @Override
     public ResponseEntity<String> createPayment(PaymentDto paymentDto) {
@@ -36,8 +32,16 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public ResponseEntity<String> updatePayment(PaymentDto paymentDto) {
-        return null;
+    public ResponseEntity<String> updatePayment(Long id, PaymentDto paymentDto) {
+        if(paymentRepository.existsById(id)){
+            Payment payment = paymentRepository.getReferenceById(id);
+            payment.setPaymentType(paymentDto.paymentType());
+            paymentRepository.save(payment);
+            return new ResponseEntity<>("Payment method was updated", HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("Payment method not found", HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override
@@ -46,7 +50,7 @@ public class PaymentServiceImpl implements PaymentService {
             paymentRepository.deleteById(id);
             return new ResponseEntity<>("Payment method deleted", HttpStatus.OK);
         }
-        return new ResponseEntity<>("Bad Request, payment method not found", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Bad Request, payment method not found", HttpStatus.NOT_FOUND);
 
     }
 
@@ -61,7 +65,7 @@ public class PaymentServiceImpl implements PaymentService {
             var payment = paymentRepository.getReferenceById(id);
             return new ResponseEntity<>(payment.getPaymentType(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Bad Request, payment method not found", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Bad Request, payment method not found", HttpStatus.NOT_FOUND);
         }
     }
 }
