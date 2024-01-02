@@ -5,24 +5,22 @@ import com.alumnione.ecommerce.dto.CellphoneDataUpdateDto;
 import com.alumnione.ecommerce.entity.Cellphone;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Optional;
 
 public interface CellphoneService {
 
-    Cellphone createCellphone(CellphoneCreationDto cellphoneCreationDto);
-    Page<Cellphone>  findAllCellphones(Pageable pageable);
+    ResponseEntity<Cellphone> createCellphone(CellphoneCreationDto cellphoneCreationDto, UriComponentsBuilder uriComponentsBuilder);
+
+    ResponseEntity<Page<Cellphone>> findAllCellphones(Pageable pageable);
 
 //    Page<CellphoneClosedView>  findAllCellphones(Pageable pageable);
 
-//    CellphoneClosedView findByIdCellphone(Long id);
-    Optional<Cellphone> findByIdCellphone(Long id);
+    //    CellphoneClosedView findByIdCellphone(Long id);
+    ResponseEntity<Object> findByIdCellphone(Long id);
 
-    Cellphone updateDataCellphone(Long id, CellphoneDataUpdateDto cellphoneDataUpdateDto);
+    ResponseEntity<Object> updateDataCellphone(Long id, CellphoneDataUpdateDto cellphoneDataUpdateDto);
 
-    void deleteCellphone(Long id);
-
-
-
-
+    ResponseEntity<String> deleteCellphone(Long id);
 }
