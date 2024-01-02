@@ -35,10 +35,7 @@ public class Cart {
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
-    //TODO: remove this!!!
-    @JsonIgnore //error (user -> order -> invoice) SQL Error: 1146, SQLState: 42S02, Table 'ecommerce_backend_local.invoice' doesn't exist
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(fetch=FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private User user;
-
 }
