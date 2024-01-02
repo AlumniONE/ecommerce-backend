@@ -1,51 +1,64 @@
 package com.alumnione.ecommerce.controller;
 
+import com.alumnione.ecommerce.entity.Invoice;
+import com.alumnione.ecommerce.service.InvoiceService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Optional;
+
+
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 // TODO: cambiar el valor de retorno por el valor correcto (DTO)
 // TODO: agregar la validacion de los datos de entrada
-// TODO: implementar la logica de negocio (crear un usuario) 
+// TODO: implementar la logica de negocio (crear un usuario)
 // TODO: implementar la logica de persistencia (guardar el usuario en la base de datos)
 // TODO: implementar la logica de respuesta (retornar el usuario creado)
 // TODO: agregar el manejo de excepciones
 // TODO: agregar el manejo de errores
 
 
+
 @RestController
-@RequestMapping("/invoices") // TODO: cambiar el nombre del recurso
+@RequestMapping("/invoice")// TODO: cambiar el nombre del recurso
 public class InvoiceController {
 
+    @Autowired
+    private InvoiceService invoiceService;
+
+    @GetMapping
+    public ArrayList<Invoice> getInvoices(){
+        return this.invoiceService.getInvoices();
+    }
+
     @PostMapping
-    public ResponseEntity<String> createInvoice() {
-        return null;
+    public Invoice saveInvoice(@RequestBody Invoice invoice){
+        return this.invoiceService.saveInvoice(invoice);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<String> getInvoiceById(@PathVariable Long id) {
-        return null;
+    @GetMapping(path = "/{id}")
+    public Optional<Invoice> getUserById(@PathVariable Long id){
+        return this.invoiceService.getById(id);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updateInvoice(@PathVariable Long id) {
-        return null;
+    @PutMapping(path = "/{id}")
+    public Invoice updateInvoiceById(@RequestBody Invoice request, @PathVariable("id") Long id){
+        return this.invoiceService.updateById(request, id);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteInvoice(@PathVariable Long id) {
-        return null;
-    }
+    @DeleteMapping(path = "/{id}")
+    public String deleteById(@PathVariable("id") Long id){
+        boolean ok = this.invoiceService.deleteInvoice(id);
 
-    @GetMapping("/all")
-    public ResponseEntity<List<String>> getAllInvoices() { 
-        return null;
+        if(ok){
+           return "Invoice with id" + id + "deleted";
+        } else {
+            return "Error, we have a problem and can't delete Invoice with id" + id;
+        }
+
     }
 }
