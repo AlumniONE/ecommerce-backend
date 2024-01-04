@@ -63,6 +63,9 @@ public class Cellphone {
     @Column(name = "stock")
     private Integer stock;
 
+    @Column(name = "quantity")
+    private Integer quantity;
+
     @Column(name = "launch_date")
     private String launchDate;
 
