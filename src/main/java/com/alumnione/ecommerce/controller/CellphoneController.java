@@ -14,15 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-// TODO: cambiar el valor de retorno por el valor correcto (DTO)
 // TODO: agregar la validacion de los datos de entrada
-// TODO: implementar la logica de negocio (crear un usuario) 
-// TODO: implementar la logica de persistencia (guardar el usuario en la base de datos)
-// TODO: implementar la logica de respuesta (retornar el usuario creado)
 // TODO: agregar el manejo de excepciones
 // TODO: agregar el manejo de errores
-
-
 @RestController
 @RequestMapping("/cellphones")
 public class CellphoneController {
