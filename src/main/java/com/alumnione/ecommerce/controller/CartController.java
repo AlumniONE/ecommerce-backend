@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// TODO: agregar la validacion de los datos de entrada
+// TODO: agregar el manejo de excepciones
+// TODO: agregar el manejo de errores
 @RestController
 @RequestMapping(path = "cart")
 public class CartController {

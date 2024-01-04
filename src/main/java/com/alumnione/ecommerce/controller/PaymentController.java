@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 // TODO: agregar la validacion de los datos de entrada
 // TODO: agregar el manejo de excepciones
 // TODO: agregar el manejo de errores
-
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/payments") // TODO: cambiar el nombre del recurso
