@@ -4,7 +4,6 @@ import com.alumnione.ecommerce.dto.CellphoneCreationDto;
 import com.alumnione.ecommerce.dto.CellphoneDataUpdateDto;
 import com.alumnione.ecommerce.entity.Cellphone;
 import com.alumnione.ecommerce.repository.CellphoneRepository;
-import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -70,43 +69,43 @@ public class CellphoneServiceImpl implements CellphoneService {
 
         if (cellphone != null) {
 
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.brand())) {
+            if (!cellphoneDataUpdateDto.brand().isBlank()) {
                 cellphone.setBrand(cellphoneDataUpdateDto.brand());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.model())) {
+            if (!cellphoneDataUpdateDto.model().isBlank()) {
                 cellphone.setModel(cellphoneDataUpdateDto.model());
             }
             if (cellphoneDataUpdateDto.price() != 0.0) {
                 cellphone.setPrice(cellphoneDataUpdateDto.price());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.internalStorage())) {
+            if (!cellphoneDataUpdateDto.internalStorage().isBlank()) {
                 cellphone.setInternalStorage(cellphoneDataUpdateDto.internalStorage());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.ramMemory())) {
+            if (!cellphoneDataUpdateDto.ramMemory().isBlank()) {
                 cellphone.setRamMemory(cellphoneDataUpdateDto.ramMemory());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.operatingSystem())) {
+            if (!cellphoneDataUpdateDto.operatingSystem().isBlank()) {
                 cellphone.setOperatingSystem(cellphoneDataUpdateDto.operatingSystem());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.screenSize())) {
+            if (!cellphoneDataUpdateDto.screenSize().isBlank()) {
                 cellphone.setScreenSize(cellphoneDataUpdateDto.screenSize());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.screenResolution())) {
+            if (!cellphoneDataUpdateDto.screenResolution().isBlank()) {
                 cellphone.setScreenResolution(cellphoneDataUpdateDto.screenResolution());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.mainCamera())) {
+            if (!cellphoneDataUpdateDto.mainCamera().isBlank()) {
                 cellphone.setMainCamera(cellphoneDataUpdateDto.mainCamera());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.frontCamera())) {
+            if (!cellphoneDataUpdateDto.frontCamera().isBlank()) {
                 cellphone.setFrontCamera(cellphoneDataUpdateDto.frontCamera());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.battery())) {
+            if (!cellphoneDataUpdateDto.battery().isBlank()) {
                 cellphone.setBattery(cellphoneDataUpdateDto.battery());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.connectivity())) {
+            if (!cellphoneDataUpdateDto.connectivity().isBlank()) {
                 cellphone.setConnectivity(cellphoneDataUpdateDto.connectivity());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.color())) {
+            if (!cellphoneDataUpdateDto.color().isBlank()) {
                 cellphone.setColor(cellphoneDataUpdateDto.color());
             }
 //            if ( cellphoneDataUpdateDto.stock() != 0 ) {  //posiblemente este dato se debe de disminuir automaticamente pero comento esta parte para lograr meterle un 0
@@ -114,10 +113,10 @@ public class CellphoneServiceImpl implements CellphoneService {
 //            }
             cellphone.setStock(cellphoneDataUpdateDto.stock());
 
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.launchDate())) {
+            if (!cellphoneDataUpdateDto.launchDate().isBlank()) {
                 cellphone.setLaunchDate(cellphoneDataUpdateDto.launchDate());
             }
-            if (StringUtils.isNotBlank(cellphoneDataUpdateDto.image())) {
+            if (!cellphoneDataUpdateDto.image().isBlank()) {
                 cellphone.setImage(cellphoneDataUpdateDto.image());
             }
 
