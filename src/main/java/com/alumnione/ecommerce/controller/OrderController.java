@@ -2,14 +2,13 @@ package com.alumnione.ecommerce.controller;
 
 import java.util.List;
 
+import com.alumnione.ecommerce.dto.OrderCreationDto;
+import com.alumnione.ecommerce.entity.Order;
+import com.alumnione.ecommerce.service.OrderServiceImpl;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 // TODO: cambiar el valor de retorno por el valor correcto (DTO)
 // TODO: agregar la validacion de los datos de entrada
@@ -21,17 +20,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/orders") // TODO: cambiar el nombre del recurso
 public class OrderController {
 
-    @PostMapping
-    public ResponseEntity<String> createOrder() {
-        return null;
+    private final OrderServiceImpl orderService;
+
+    @PostMapping(path = "/create")
+    public ResponseEntity<OrderCreationDto> createOrder(@RequestBody @Valid Order order) {
+
+        return orderService.createOrder(order);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> getOrderById(@PathVariable Long id) {
-        return null;
+    public ResponseEntity<OrderCreationDto> getOrderById(@PathVariable Long id) {
+        return orderService.findOrderById(id);
     }
 
     @PutMapping("/{id}")

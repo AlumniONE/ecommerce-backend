@@ -1,20 +1,29 @@
 package com.alumnione.ecommerce.dto;
 
+import com.alumnione.ecommerce.entity.Cellphone;
+import com.alumnione.ecommerce.entity.Invoice;
+import com.alumnione.ecommerce.entity.User;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public record OrderCreationDto(
-  @NotNull(message = "productId is required")
-  Long productId,
-
-  @NotNull(message = "userId is required")
-  Long userId,
-
-  @NotBlank(message = "orderStatus is required")
-  @Size(max = 20, message = "Order status must not exceed 20 characters") 
-  String orderStatus,
-
-  @NotNull(message = "orderCreatedAt is required")
-  String orderCreatedAt
-) {}
+import java.util.List;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class OrderCreationDto{
+        @NotBlank(message = "Order status is required")
+        String orderStatus;
+        @NotBlank(message = "Order created at is required")
+        String orderCreatedAt;
+        @NotBlank(message = "The invoice is required")
+        Invoice invoice;
+        //User user,
+        //List<Cellphone> productId
+}
