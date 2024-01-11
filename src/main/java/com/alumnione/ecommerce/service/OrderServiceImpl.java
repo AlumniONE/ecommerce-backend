@@ -59,21 +59,23 @@ public class OrderServiceImpl implements OrderService{
     public ResponseEntity<?> deleteOrder(Long id) {
         return null;
     }
-        public static OrderCreationDto convertEntityToDto(Order order) {
+
+    public static OrderCreationDto convertEntityToDto(Order order) {
             OrderCreationDto orderCreationDto = new OrderCreationDto();
             orderCreationDto.setOrderStatus(order.getOrderStatus());
             orderCreationDto.setOrderCreatedAt(order.getOrderCreatedAt());
             orderCreationDto.setInvoice(order.getInvoice());
             return orderCreationDto;
-        }
+    }
 
-        public static Order convertDtoToEntity(OrderCreationDto orderCreationDto){
+    public static Order convertDtoToEntity(OrderCreationDto orderCreationDto){
             Order order = new Order();
             order.setOrderStatus(orderCreationDto.getOrderStatus());
             order.setOrderCreatedAt(orderCreationDto.getOrderCreatedAt());
             order.setInvoice(orderCreationDto.getInvoice());
             return order;
-        }
+
+    }
 
 }
 
