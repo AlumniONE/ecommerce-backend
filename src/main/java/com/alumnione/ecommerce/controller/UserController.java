@@ -22,13 +22,10 @@ import com.alumnione.ecommerce.service.UserService;
 
 import jakarta.validation.Valid;
 
-// TODO: cambiar el valor de retorno por el valor correcto (DTO)
 // TODO: agregar la validacion de los datos de entrada
-// TODO: implementar la logica de negocio (crear un usuario) 
-// TODO: implementar la logica de persistencia (guardar el usuario en la base de datos)
-// TODO: implementar la logica de respuesta (retornar el usuario creado)
 // TODO: agregar el manejo de excepciones
 // TODO: agregar el manejo de errores
+// TODO: aplicar toda la logica de programación en la capa de Servicios
 
 @RestController
 @RequestMapping("/users") // TODO: cambiar el nombre del recurso
