@@ -1,43 +1,26 @@
 package com.alumnione.ecommerce.service;
 
-import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.alumnione.ecommerce.dto.UserCreationDto;
 import com.alumnione.ecommerce.entity.User;
-import com.alumnione.ecommerce.repository.UserRepository;
+
 
 @Service
-public class UserService {
+public interface UserService {
 	
-	private UserRepository userRepository;
+	public ResponseEntity<String> createUser(UserCreationDto userCreationDto);
 	
-	@Autowired
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+	public ResponseEntity<?> getUser(Long id);
 	
-	public ResponseEntity<String> createUser(UserCreationDto userCreationDto){
-		
-		User user = new User();
-		
-		user.setFirstName(userCreationDto.firstName());
-		user.setLastName(userCreationDto.lastName());
-		user.setEmail(userCreationDto.email());
-		user.setPassword(userCreationDto.password());
-		user.setAddress(userCreationDto.address());
-		user.setUserType(userCreationDto.userType());
-		
-		userRepository.save(user);
-		
-		return new ResponseEntity<String>("Registry Completed", HttpStatus.OK);
-	}
+	public ResponseEntity<?> getAllUsers();
 	
+	public ResponseEntity<?> updateUser(Long id, UserCreationDto userCreationDto);
 	
-
+	public ResponseEntity<String> deleteUser(Long id);
+	
 }

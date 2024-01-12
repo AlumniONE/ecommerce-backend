@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "invoice")
+@Table(name = "invoices")
 @Setter@Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,7 +26,7 @@ public class Invoice {
     private double totalAmount;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "id")
     private Order order;
         /*
     TODO: Agregar relacion con Payments
