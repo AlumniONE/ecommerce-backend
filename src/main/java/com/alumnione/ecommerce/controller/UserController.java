@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alumnione.ecommerce.dto.UserCreationDto;
+import com.alumnione.ecommerce.entity.User;
 import com.alumnione.ecommerce.service.UserService;
 
 import jakarta.validation.Valid;
@@ -31,12 +32,8 @@ import jakarta.validation.Valid;
 @RequestMapping("/users") // TODO: cambiar el nombre del recurso
 public class UserController {
 	
-	private UserService userService;
-	
 	@Autowired
-	public UserController(UserService userService) {
-		this.userService = userService;
-	}
+	private UserService userService;
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody @Valid UserCreationDto userCreationDto, BindingResult bindingResult){
@@ -57,23 +54,25 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> getUserById(@PathVariable Long id) {
-        return null;
+    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+        return userService.getUser(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable Long id) {
-        return null;
+    public ResponseEntity<?> updateUser(
+    		@PathVariable Long id,
+    		@RequestBody UserCreationDto userCreationDto) {
+        return userService.updateUser(id, userCreationDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        return null;
+        return userService.deleteUser(id);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<String>> getAllUsers() { // TODO: logicamente no es String V:
-        return null;
+    public ResponseEntity<?> getAllUsers() { // TODO: logicamente no es String V:
+        return userService.getAllUsers();
     }
 
 }
