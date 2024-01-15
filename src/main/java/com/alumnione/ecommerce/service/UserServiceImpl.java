@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
 		
 		userRepository.save(user);
 
-		return new ResponseEntity<>("Registry Completed", HttpStatus.OK);
+		return new ResponseEntity<String>("Registry Completed", HttpStatus.OK);
 	}
 
 	public ResponseEntity<?> getUser(Long id){
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService{
 		if(userRepository.existsById(id))
 			return new ResponseEntity<>(userRepository.findById(id), HttpStatus.OK);
 		
-		return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
 	}
 	
 	public ResponseEntity<?> getAllUsers(){
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService{
 		
 		HttpStatus status = users.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK;
 		
-		return new ResponseEntity<>(users, status);
+		return new ResponseEntity<List<User>>(users, status);
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService{
 		User user = userRepository.findById(id).orElse(null);
 		
 		if(user == null)
-			return new ResponseEntity<>("User not exist", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("User not exist", HttpStatus.NOT_FOUND);
 				
 		user.setFirstName(userCreationDto.firstName());
 		user.setLastName(userCreationDto.lastName());
@@ -76,9 +76,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public ResponseEntity<String> deleteUser(Long id) {
 		if(!userRepository.existsById(id))
-			return new ResponseEntity<>("User not exist", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("User not exist", HttpStatus.NOT_FOUND);
 		
 		userRepository.deleteById(id);
-		return new ResponseEntity<>("User delete", HttpStatus.OK);
+		return new ResponseEntity<String>("User delete", HttpStatus.OK);
 	}
 }
