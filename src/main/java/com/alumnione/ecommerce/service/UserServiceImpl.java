@@ -55,18 +55,22 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public ResponseEntity<?> updateUser(Long id, UserCreationDto userCreationDto) {
-		if(!userRepository.existsById(id))
-			return new ResponseEntity<>("User not exist", HttpStatus.NOT_FOUND);
+		User user = userRepository.findById(id).orElse(null);
 		
-		User user = new User();		
+		if(user == null)
+			return new ResponseEntity<>("User not exist", HttpStatus.NOT_FOUND);
+				
 		user.setFirstName(userCreationDto.firstName());
 		user.setLastName(userCreationDto.lastName());
 		user.setEmail(userCreationDto.email());
 		user.setPassword(userCreationDto.password());
 		user.setAddress(userCreationDto.address());
 		user.setUserType(null);
+		
+		userRepository.save(user);
 
-		return new ResponseEntity<>(userRepository.save(user), HttpStatus.OK);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+
 	}
 
 	@Override
