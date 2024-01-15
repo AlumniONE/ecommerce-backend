@@ -1,6 +1,7 @@
 package com.alumnione.ecommerce.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService{
 	public ResponseEntity<?> getUser(Long id){
 		
 		if(userRepository.existsById(id))
-			return new ResponseEntity<>(userRepository.findById(id), HttpStatus.OK);
+			return new ResponseEntity<Optional<User>>(userRepository.findById(id), HttpStatus.OK);
 		
 		return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
 	}
