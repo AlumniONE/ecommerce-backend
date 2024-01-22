@@ -1,7 +1,9 @@
 package com.alumnione.ecommerce.dto;
 
+import com.alumnione.ecommerce.enumeration.UserType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record UserCreationDto(
@@ -26,7 +28,7 @@ public record UserCreationDto(
         @Size(max = 30, message = "The address must not exceed 30 characters")
         String address,
         
-        @NotBlank(message = "User type is required")
-        String userType
+        @NotNull(message = "User type is required")
+        UserType userType
 ) {
 }

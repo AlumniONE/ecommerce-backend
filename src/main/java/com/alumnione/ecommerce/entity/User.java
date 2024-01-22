@@ -3,18 +3,10 @@ package com.alumnione.ecommerce.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.alumnione.ecommerce.enumeration.UserType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,7 +40,8 @@ public class User {
     private String address;
 
     @Column(name = "user_type")
-    private String userType;
+    @Enumerated(value = EnumType.STRING)
+    private UserType userType;
 
     @OneToMany(mappedBy = "user")
     private Set<Order> orders = new HashSet<>();
