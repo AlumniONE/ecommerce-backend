@@ -19,7 +19,7 @@ public class Cellphone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Long cellphoneId;
 
     @Column(name = "brand")
     private String brand;

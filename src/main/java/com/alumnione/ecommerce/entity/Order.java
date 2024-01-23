@@ -2,6 +2,7 @@ package com.alumnione.ecommerce.entity;
 
 import java.util.List;
 
+import com.alumnione.ecommerce.entity.enums.EOrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +23,8 @@ public class Order {
     private Long orderId;
 
     @Column(name = "order_status")
-    private String orderStatus;
+    @Enumerated(EnumType.STRING)
+    private EOrderStatus orderStatus;
 
     @Column(name = "order_created_at")
     private String orderCreatedAt;
@@ -37,9 +39,9 @@ public class Order {
     @ManyToMany
     @JoinTable(
     name = "cellphones",
-    joinColumns = @JoinColumn(name = "product_id"),
-    inverseJoinColumns = @JoinColumn(name = "id")
+        joinColumns = @JoinColumn(name = "cellphoneId"),
+        inverseJoinColumns = @JoinColumn(name = "id")
     )
-    private List<Cellphone> productId;
+    private List<Cellphone> cellphonesId;
 
 }

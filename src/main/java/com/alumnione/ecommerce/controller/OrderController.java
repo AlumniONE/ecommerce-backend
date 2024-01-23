@@ -48,7 +48,7 @@ public class OrderController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<String>> getAllOrders() { 
-        return null;
+    public ResponseEntity<?> getAllOrders() {
+        return orderService.getAllOrder();
     }
 }
