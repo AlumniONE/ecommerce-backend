@@ -2,7 +2,7 @@ package com.alumnione.ecommerce.entity;
 
 import java.util.List;
 
-import com.alumnione.ecommerce.entity.enums.EOrderStatus;
+import com.alumnione.ecommerce.enumeration.EOrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

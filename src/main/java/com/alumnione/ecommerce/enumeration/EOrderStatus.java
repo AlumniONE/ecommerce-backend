@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.entity.enums;
+package com.alumnione.ecommerce.enumeration;
 // Pendiente: Cuando es creada.
 // Aceptada: Cuando el proveedor acepta la solicitud.
 // Facturada: Cuando se asocia a una factura enviada por su proveedor.
