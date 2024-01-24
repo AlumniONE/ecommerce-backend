@@ -59,9 +59,21 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(
-    		@PathVariable Long id,
-    		@RequestBody UserCreationDto userCreationDto) {
+    public ResponseEntity<?> updateUser(@PathVariable Long id,
+    									@RequestBody @Valid UserCreationDto userCreationDto,
+    									BindingResult bindingResult) {
+    		
+    	if(bindingResult.hasErrors()) {
+    		
+    		List<ObjectError> errors = bindingResult.getAllErrors();
+    		
+    		Map<String, String> messages = new HashMap<>();
+            for (ObjectError error : errors) {
+                messages.put(error.getCode(), error.getDefaultMessage());
+            }
+            
+    		return ResponseEntity.badRequest().body(messages.toString());
+    	}
         return userService.updateUser(id, userCreationDto);
     }
 
