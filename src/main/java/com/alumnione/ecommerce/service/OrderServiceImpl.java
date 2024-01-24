@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -26,28 +27,31 @@ public class OrderServiceImpl implements OrderService{
             orderRepository.save(order);
             return new ResponseEntity<>(orderCreationDto, HttpStatus.CREATED);
         }
-
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     @Override
-    public ResponseEntity<List<OrderCreationDto>> getAllOrder() {
+    public ResponseEntity<List<Order>> getAllOrder() {
 
-        return null;
+        if(orderRepository.findAll().isEmpty()){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(orderRepository.findAll(), HttpStatus.OK);
+        }
     }
-
 
     @Override
     public ResponseEntity<OrderCreationDto> findOrderById(Long id) {
         if(orderRepository.existsById(id)){
             Order order = orderRepository.getReferenceById(id);
             return new ResponseEntity<>(new OrderCreationDto(
+                    order.getOrderId(),
                     order.getOrderStatus(),
                     order.getOrderCreatedAt(),
                     order.getInvoice()
             ), HttpStatus.OK);
         }
-        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -60,12 +64,13 @@ public class OrderServiceImpl implements OrderService{
         return null;
     }
 
-    public static OrderCreationDto convertEntityToDto(Order order) {
-            OrderCreationDto orderCreationDto = new OrderCreationDto();
-            orderCreationDto.setOrderStatus(order.getOrderStatus());
-            orderCreationDto.setOrderCreatedAt(order.getOrderCreatedAt());
-            orderCreationDto.setInvoice(order.getInvoice());
-            return orderCreationDto;
+    public static OrderCreationDto convertEntityToDto(Order order){
+        return new OrderCreationDto(
+                order.getOrderId(),
+                order.getOrderStatus(),
+                order.getOrderCreatedAt(),
+                order.getInvoice()
+        );
     }
 
     public static Order convertDtoToEntity(OrderCreationDto orderCreationDto){
@@ -74,7 +79,6 @@ public class OrderServiceImpl implements OrderService{
             order.setOrderCreatedAt(orderCreationDto.getOrderCreatedAt());
             order.setInvoice(orderCreationDto.getInvoice());
             return order;
-
     }
 
 }

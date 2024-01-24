@@ -9,7 +9,7 @@ import java.util.List;
 public interface OrderService {
 
     public ResponseEntity<OrderCreationDto> createOrder(Order order);
-    public ResponseEntity<List<OrderCreationDto>> getAllOrder();
+    public ResponseEntity<List<Order>> getAllOrder();
     public ResponseEntity<OrderCreationDto> findOrderById(Long id);
     public ResponseEntity<String> updateOrder(Long id, OrderCreationDto orderCreationDto);
     public ResponseEntity<?> deleteOrder(Long id);
