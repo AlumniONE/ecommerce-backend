@@ -20,7 +20,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long orderId;
+    private Long id;
 
     @Column(name = "order_status")
     @Enumerated(EnumType.STRING)
@@ -29,7 +29,8 @@ public class Order {
     @Column(name = "order_created_at")
     private String orderCreatedAt;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "invoice_id")
     private Invoice invoice;
 
     @ManyToOne
@@ -38,10 +39,10 @@ public class Order {
 
     @ManyToMany
     @JoinTable(
-    name = "cellphones",
-        joinColumns = @JoinColumn(name = "cellphoneId"),
-        inverseJoinColumns = @JoinColumn(name = "id")
+    name = "order_cell",
+        joinColumns = @JoinColumn(name = "cellphone_id"),
+        inverseJoinColumns = @JoinColumn(name = "order_id")
     )
-    private List<Cellphone> cellphonesId;
+    private List<Cellphone> cellphones;
 
 }

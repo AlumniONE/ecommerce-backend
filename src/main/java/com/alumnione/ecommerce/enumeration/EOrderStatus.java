@@ -5,9 +5,9 @@ package com.alumnione.ecommerce.enumeration;
 // Despachada: Cuando los productos son despachados.
 // Rechazada: Cuando el proveedor rechaza la orden de compra.
 public enum EOrderStatus {
-    PENDIENTE,
-    ACEPTADA,
-    FACTURADA,
-    DESPACHADA,
-    RECHAZADA
+    PENDING,
+    ACCEPTED,
+    INVOICED,
+    SHIPPED,
+    REJECTED
 }

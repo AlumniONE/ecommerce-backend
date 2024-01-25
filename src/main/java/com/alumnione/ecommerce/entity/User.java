@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.alumnione.ecommerce.enumeration.UserType;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -24,7 +23,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long userId;
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -47,6 +46,6 @@ public class User {
     private Set<Order> orders = new HashSet<>();
 
 //  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
     private Cart cart;
 }

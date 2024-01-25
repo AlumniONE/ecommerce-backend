@@ -1,2 +1,0 @@
-ALTER TABLE carts
-    MODIFY user_id BIGINT NOT NULL UNIQUE;

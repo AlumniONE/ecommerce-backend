@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Invoice {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,13 +22,12 @@ public class Invoice {
     private LocalDateTime invoiceDate;
 
     @Column(name = "total_amount")
-    private double totalAmount;
+    private Double totalAmount;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id")
+    @OneToOne(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true)
     private Order order;
-        /*
-    TODO: Agregar relacion con Payments
-    private Long idPayment;
-    */
+
+    @OneToOne
+    @JoinColumn(name = "payment_id")
+    private Payment payment;
 }

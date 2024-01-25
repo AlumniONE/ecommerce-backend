@@ -1,5 +1,0 @@
-CREATE TABLE payments
-(
-    id   BIGINT AUTO_INCREMENT PRIMARY KEY,
-    payment_type VARCHAR(100) NOT NULL
-);
