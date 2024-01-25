@@ -17,4 +17,7 @@ public class Payment {
 
     @Column(name = "payment_type")
     private String paymentType;
+
+    @OneToOne(mappedBy = "payment")
+    private Invoice invoice;
 }

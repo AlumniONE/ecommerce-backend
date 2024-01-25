@@ -45,7 +45,7 @@ public class OrderServiceImpl implements OrderService{
         if(orderRepository.existsById(id)){
             Order order = orderRepository.getReferenceById(id);
             return new ResponseEntity<>(new OrderCreationDto(
-                    order.getOrderId(),
+                    order.getId(),
                     order.getOrderStatus(),
                     order.getOrderCreatedAt(),
                     order.getInvoice()
@@ -66,7 +66,7 @@ public class OrderServiceImpl implements OrderService{
 
     public static OrderCreationDto convertEntityToDto(Order order){
         return new OrderCreationDto(
-                order.getOrderId(),
+                order.getId(),
                 order.getOrderStatus(),
                 order.getOrderCreatedAt(),
                 order.getInvoice()

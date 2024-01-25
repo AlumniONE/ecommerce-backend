@@ -41,7 +41,7 @@ public class CellphoneServiceImpl implements CellphoneService {
         cellphone.setImage(cellphoneCreationDto.image());
 
         Cellphone cellphoneCreated = cellphoneRepository.save(cellphone);
-        URI url = uriComponentsBuilder.path("/cellphones/{id}").buildAndExpand(cellphoneCreated.getCellphoneId()).toUri();
+        URI url = uriComponentsBuilder.path("/cellphones/{id}").buildAndExpand(cellphoneCreated.getId()).toUri();
 
         return ResponseEntity.created(url).body(cellphoneCreated);
     }

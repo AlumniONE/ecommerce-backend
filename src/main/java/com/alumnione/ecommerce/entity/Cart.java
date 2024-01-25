@@ -20,7 +20,7 @@ import java.util.Set;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @ManyToMany
@@ -29,7 +29,6 @@ public class Cart {
             joinColumns = @JoinColumn(name = "cart_id"),
             inverseJoinColumns = @JoinColumn(name = "cellphone_id")
     )
-    //list to get the cellphones in order
     private List<Cellphone> cellphones;
 
     @Column(name = "last_updated")
