@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 // TODO: agregar la validacion de los datos de entrada
 // TODO: agregar el manejo de excepciones
 // TODO: agregar el manejo de errores
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/cellphones")
 public class CellphoneController {
