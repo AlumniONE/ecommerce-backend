@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alumnione.ecommerce.constan.EcommerceConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -29,13 +30,13 @@ import jakarta.validation.Valid;
 // TODO: aplicar toda la logica de programación en la capa de Servicios
 
 @RestController
-@RequestMapping("/users") // TODO: cambiar el nombre del recurso
+@RequestMapping(path = EcommerceConstant.GENERIC_RESOURCE) // TODO: cambiar el nombre del recurso
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 
-    @PostMapping
+    @PostMapping(path = EcommerceConstant.USER_RESOURCE)
     public ResponseEntity<String> createUser(@RequestBody @Valid UserCreationDto userCreationDto, BindingResult bindingResult){
     	
     	if(bindingResult.hasErrors()) {
@@ -53,12 +54,12 @@ public class UserController {
     	return userService.createUser(userCreationDto);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = EcommerceConstant.USER_RESOURCE+EcommerceConstant.RESOURCE_ID)
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path = EcommerceConstant.USER_RESOURCE+EcommerceConstant.RESOURCE_ID)
     public ResponseEntity<?> updateUser(@PathVariable Long id,
     									@RequestBody @Valid UserCreationDto userCreationDto,
     									BindingResult bindingResult) {
@@ -77,12 +78,12 @@ public class UserController {
         return userService.updateUser(id, userCreationDto);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = EcommerceConstant.USER_RESOURCE+EcommerceConstant.RESOURCE_ID)
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         return userService.deleteUser(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping(path = EcommerceConstant.USER_RESOURCE)
     public ResponseEntity<?> getAllUsers() { // TODO: logicamente no es String V:
         return userService.getAllUsers();
     }

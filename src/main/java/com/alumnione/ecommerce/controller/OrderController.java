@@ -2,6 +2,7 @@ package com.alumnione.ecommerce.controller;
 
 import java.util.List;
 
+import com.alumnione.ecommerce.constan.EcommerceConstant;
 import com.alumnione.ecommerce.dto.OrderCreationDto;
 import com.alumnione.ecommerce.entity.Order;
 import com.alumnione.ecommerce.service.OrderServiceImpl;
@@ -21,33 +22,33 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/orders") // TODO: cambiar el nombre del recurso
+@RequestMapping(path = EcommerceConstant.GENERIC_RESOURCE) // TODO: cambiar el nombre del recurso
 public class OrderController {
 
     private final OrderServiceImpl orderService;
 
-    @PostMapping(path = "/create")
+    @PostMapping(path = EcommerceConstant.ORDER_RESOURCE)
     public ResponseEntity<OrderCreationDto> createOrder(@RequestBody @Valid Order order) {
 
         return orderService.createOrder(order);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = EcommerceConstant.ORDER_RESOURCE+EcommerceConstant.RESOURCE_ID)
     public ResponseEntity<OrderCreationDto> getOrderById(@PathVariable Long id) {
         return orderService.findOrderById(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path = EcommerceConstant.ORDER_RESOURCE+EcommerceConstant.RESOURCE_ID)
     public ResponseEntity<String> updateOrder(@PathVariable Long id) {
         return null;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = EcommerceConstant.ORDER_RESOURCE+EcommerceConstant.RESOURCE_ID)
     public ResponseEntity<String> deleteOrder(@PathVariable Long id) {
         return null;
     }
 
-    @GetMapping("/all")
+    @GetMapping(path = EcommerceConstant.ORDER_RESOURCE)
     public ResponseEntity<?> getAllOrders() {
         return orderService.getAllOrder();
     }
