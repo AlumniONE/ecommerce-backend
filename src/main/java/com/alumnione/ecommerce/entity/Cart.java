@@ -25,16 +25,16 @@ public class Cart {
 
     @ManyToMany
     @JoinTable(
-            name="cart_cell",
-            joinColumns = @JoinColumn(name = "cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "cellphone_id")
+    name = "cart_cell",
+    joinColumns = @JoinColumn(name = "cart_id"),
+    inverseJoinColumns = @JoinColumn(name = "cellphone_id")
     )
     private List<Cellphone> cellphones;
 
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
-    @OneToOne(fetch=FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private User user;
 }
