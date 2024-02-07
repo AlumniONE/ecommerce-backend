@@ -1,8 +1,9 @@
-package com.alumnione.ecommerce.service;
+package com.alumnione.ecommerce.service.impl;
 
 import com.alumnione.ecommerce.dto.PaymentDto;
 import com.alumnione.ecommerce.entity.Payment;
 import com.alumnione.ecommerce.repository.PaymentRepository;
+import com.alumnione.ecommerce.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

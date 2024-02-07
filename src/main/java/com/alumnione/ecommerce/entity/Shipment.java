@@ -16,7 +16,7 @@ import java.util.Date;
 public class Shipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long shipment_id;
     private Date shipment_date;
     private String address;
     private String city;

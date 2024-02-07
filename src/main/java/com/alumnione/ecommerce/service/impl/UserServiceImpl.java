@@ -1,8 +1,9 @@
-package com.alumnione.ecommerce.service;
+package com.alumnione.ecommerce.service.impl;
 
 import java.util.List;
 import java.util.Optional;
 
+import com.alumnione.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
