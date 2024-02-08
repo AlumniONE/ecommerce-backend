@@ -13,7 +13,7 @@ import java.util.List;
 @Transactional
 public class ShipmentServiceImpl implements ShipmentService {
 
-    public ShipmentRepository shipmentRepository;
+    public final ShipmentRepository shipmentRepository;
     @Override
     public Shipment createShipment(Shipment shipment) {
         if(shipment != null){
