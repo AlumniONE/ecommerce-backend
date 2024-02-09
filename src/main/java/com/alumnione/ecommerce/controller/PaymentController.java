@@ -1,12 +1,10 @@
 package com.alumnione.ecommerce.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.alumnione.ecommerce.constan.EcommerceConstant;
 import com.alumnione.ecommerce.dto.PaymentDto;
-import com.alumnione.ecommerce.entity.Payment;
-import com.alumnione.ecommerce.service.PaymentServiceImpl;
+import com.alumnione.ecommerce.service.impl.PaymentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

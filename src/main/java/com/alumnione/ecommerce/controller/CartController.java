@@ -2,7 +2,7 @@ package com.alumnione.ecommerce.controller;
 
 import com.alumnione.ecommerce.constan.EcommerceConstant;
 import com.alumnione.ecommerce.dto.CartReturnDto;
-import com.alumnione.ecommerce.service.CartServiceImp;
+import com.alumnione.ecommerce.service.impl.CartServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = EcommerceConstant.GENERIC_RESOURCE)
 public class CartController {
     @Autowired
-    private CartServiceImp service;
+    private CartServiceImpl service;
 
     @PostMapping(path = EcommerceConstant.CART_RESOURCE)
     public ResponseEntity<String> createCart() {
@@ -33,10 +33,10 @@ public class CartController {
     }
 
 
-    @PostMapping(path = EcommerceConstant.CART_RESOURCE+EcommerceConstant.RESOURCE_ID)
-    public ResponseEntity<CartReturnDto> clean(@PathVariable Long id) {
-        return ResponseEntity.ok(service.clean(id));
-    }
+//    @PostMapping(path = EcommerceConstant.CART_RESOURCE+EcommerceConstant.RESOURCE_ID)
+//    public ResponseEntity<CartReturnDto> clean(@PathVariable Long id) {
+//        return ResponseEntity.ok(service.clean(id));
+//    }
 
     @PostMapping(path = EcommerceConstant.CART_RESOURCE+ EcommerceConstant.RESOURCE_ID+ EcommerceConstant.ITEM_RESOURCE+ EcommerceConstant.RESOURCE_ID_ITEM) //path = "{id}/item/{idItem}"
     public ResponseEntity<CartReturnDto> addItem(@PathVariable Long id, @PathVariable Long idItem) {

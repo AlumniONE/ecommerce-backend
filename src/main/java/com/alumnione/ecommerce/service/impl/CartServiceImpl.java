@@ -1,19 +1,17 @@
-package com.alumnione.ecommerce.service;
+package com.alumnione.ecommerce.service.impl;
 
 import com.alumnione.ecommerce.dto.CartReturnDto;
 import com.alumnione.ecommerce.entity.Cart;
 import com.alumnione.ecommerce.entity.Cellphone;
 import com.alumnione.ecommerce.repository.CartRepository;
 import com.alumnione.ecommerce.repository.CellphoneRepository;
+import com.alumnione.ecommerce.service.CartService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
-public class CartServiceImp implements CartService {
+public class CartServiceImpl implements CartService {
 
     @Autowired
     private CartRepository cartRepository;

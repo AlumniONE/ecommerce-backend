@@ -1,9 +1,10 @@
-package com.alumnione.ecommerce.service;
+package com.alumnione.ecommerce.service.impl;
 
 import com.alumnione.ecommerce.dto.CellphoneCreationDto;
 import com.alumnione.ecommerce.dto.CellphoneDataUpdateDto;
 import com.alumnione.ecommerce.entity.Cellphone;
 import com.alumnione.ecommerce.repository.CellphoneRepository;
+import com.alumnione.ecommerce.service.CellphoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

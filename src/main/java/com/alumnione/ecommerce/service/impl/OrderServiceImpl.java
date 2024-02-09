@@ -1,8 +1,9 @@
-package com.alumnione.ecommerce.service;
+package com.alumnione.ecommerce.service.impl;
 
 import com.alumnione.ecommerce.dto.OrderCreationDto;
 import com.alumnione.ecommerce.entity.Order;
 import com.alumnione.ecommerce.repository.OrderRepository;
+import com.alumnione.ecommerce.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
 
