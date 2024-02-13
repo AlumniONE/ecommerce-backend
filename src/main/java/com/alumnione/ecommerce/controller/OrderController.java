@@ -1,7 +1,7 @@
 package com.alumnione.ecommerce.controller;
 
 import com.alumnione.ecommerce.config.PathVariableConfig;
-import com.alumnione.ecommerce.dto.OrderCreationDto;
+import com.alumnione.ecommerce.dto.OrderDto;
 import com.alumnione.ecommerce.entity.Order;
 import com.alumnione.ecommerce.service.impl.OrderServiceImpl;
 import jakarta.validation.Valid;
@@ -26,13 +26,13 @@ public class OrderController {
     private final OrderServiceImpl orderService;
 
     @PostMapping(path = PathVariableConfig.ORDER_RESOURCE)
-    public ResponseEntity<OrderCreationDto> createOrder(@RequestBody @Valid Order order) {
+    public ResponseEntity<OrderDto> createOrder(@RequestBody @Valid Order order) {
 
         return orderService.createOrder(order);
     }
 
     @GetMapping(path = PathVariableConfig.ORDER_RESOURCE+PathVariableConfig.RESOURCE_ID)
-    public ResponseEntity<OrderCreationDto> getOrderById(@PathVariable Long id) {
+    public ResponseEntity<OrderDto> getOrderById(@PathVariable Long id) {
         return orderService.findOrderById(id);
     }
 
