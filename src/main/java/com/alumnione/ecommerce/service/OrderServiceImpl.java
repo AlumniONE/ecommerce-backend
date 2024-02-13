@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.service.impl;
+package com.alumnione.ecommerce.service;
 
 import com.alumnione.ecommerce.dto.OrderDto;
 import com.alumnione.ecommerce.entity.Order;

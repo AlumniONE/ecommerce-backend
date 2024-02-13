@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.service.impl;
+package com.alumnione.ecommerce.service;
 
 import java.util.List;
 import java.util.Optional;

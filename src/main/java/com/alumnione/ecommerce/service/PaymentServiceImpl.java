@@ -1,4 +1,4 @@
-package com.alumnione.ecommerce.service.impl;
+package com.alumnione.ecommerce.service;
 
 import com.alumnione.ecommerce.dto.PaymentDto;
 import com.alumnione.ecommerce.entity.Payment;
