@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alumnione.ecommerce.dto.CustomerDto;
-import com.alumnione.ecommerce.service.CustomerService;
 
 import jakarta.validation.Valid;
 
