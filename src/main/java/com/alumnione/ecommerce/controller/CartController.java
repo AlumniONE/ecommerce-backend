@@ -1,8 +1,7 @@
 package com.alumnione.ecommerce.controller;
 
 import com.alumnione.ecommerce.config.PathVariableConfig;
-import com.alumnione.ecommerce.dto.CartReturnDto;
-import com.alumnione.ecommerce.service.impl.CartServiceImpl;
+import com.alumnione.ecommerce.service.CartServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
