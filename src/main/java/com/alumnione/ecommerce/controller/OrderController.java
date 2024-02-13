@@ -1,6 +1,6 @@
 package com.alumnione.ecommerce.controller;
 
-import com.alumnione.ecommerce.constan.EcommerceConstant;
+import com.alumnione.ecommerce.config.PathVariableConfig;
 import com.alumnione.ecommerce.dto.OrderCreationDto;
 import com.alumnione.ecommerce.entity.Order;
 import com.alumnione.ecommerce.service.impl.OrderServiceImpl;
@@ -20,33 +20,33 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = EcommerceConstant.GENERIC_RESOURCE) // TODO: cambiar el nombre del recurso
+@RequestMapping(path = PathVariableConfig.GENERIC_RESOURCE) // TODO: cambiar el nombre del recurso
 public class OrderController {
 
     private final OrderServiceImpl orderService;
 
-    @PostMapping(path = EcommerceConstant.ORDER_RESOURCE)
+    @PostMapping(path = PathVariableConfig.ORDER_RESOURCE)
     public ResponseEntity<OrderCreationDto> createOrder(@RequestBody @Valid Order order) {
 
         return orderService.createOrder(order);
     }
 
-    @GetMapping(path = EcommerceConstant.ORDER_RESOURCE+EcommerceConstant.RESOURCE_ID)
+    @GetMapping(path = PathVariableConfig.ORDER_RESOURCE+PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<OrderCreationDto> getOrderById(@PathVariable Long id) {
         return orderService.findOrderById(id);
     }
 
-    @PutMapping(path = EcommerceConstant.ORDER_RESOURCE+EcommerceConstant.RESOURCE_ID)
+    @PutMapping(path = PathVariableConfig.ORDER_RESOURCE+PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<String> updateOrder(@PathVariable Long id) {
         return null;
     }
 
-    @DeleteMapping(path = EcommerceConstant.ORDER_RESOURCE+EcommerceConstant.RESOURCE_ID)
+    @DeleteMapping(path = PathVariableConfig.ORDER_RESOURCE+PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<String> deleteOrder(@PathVariable Long id) {
         return null;
     }
 
-    @GetMapping(path = EcommerceConstant.ORDER_RESOURCE)
+    @GetMapping(path = PathVariableConfig.ORDER_RESOURCE)
     public ResponseEntity<?> getAllOrders() {
         return orderService.getAllOrder();
     }

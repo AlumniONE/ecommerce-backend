@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.alumnione.ecommerce.constan.EcommerceConstant;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alumnione.ecommerce.config.PathVariableConfig;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alumnione.ecommerce.dto.UserCreationDto;
-import com.alumnione.ecommerce.entity.User;
 import com.alumnione.ecommerce.service.UserService;
 
 import jakarta.validation.Valid;
@@ -30,13 +29,13 @@ import jakarta.validation.Valid;
 // TODO: aplicar toda la logica de programación en la capa de Servicios
 
 @RestController
-@RequestMapping(path = EcommerceConstant.GENERIC_RESOURCE) // TODO: cambiar el nombre del recurso
+@RequiredArgsConstructor
+@RequestMapping(path = PathVariableConfig.GENERIC_RESOURCE) // TODO: cambiar el nombre del recurso
 public class UserController {
 	
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
 
-    @PostMapping(path = EcommerceConstant.USER_RESOURCE)
+    @PostMapping(path = PathVariableConfig.USER_RESOURCE)
     public ResponseEntity<String> createUser(@RequestBody @Valid UserCreationDto userCreationDto, BindingResult bindingResult){
     	
     	if(bindingResult.hasErrors()) {
@@ -54,12 +53,12 @@ public class UserController {
     	return userService.createUser(userCreationDto);
     }
 
-    @GetMapping(path = EcommerceConstant.USER_RESOURCE+EcommerceConstant.RESOURCE_ID)
+    @GetMapping(path = PathVariableConfig.USER_RESOURCE+ PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
-    @PutMapping(path = EcommerceConstant.USER_RESOURCE+EcommerceConstant.RESOURCE_ID)
+    @PutMapping(path = PathVariableConfig.USER_RESOURCE+ PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<?> updateUser(@PathVariable Long id,
     									@RequestBody @Valid UserCreationDto userCreationDto,
     									BindingResult bindingResult) {
@@ -78,12 +77,12 @@ public class UserController {
         return userService.updateUser(id, userCreationDto);
     }
 
-    @DeleteMapping(path = EcommerceConstant.USER_RESOURCE+EcommerceConstant.RESOURCE_ID)
+    @DeleteMapping(path = PathVariableConfig.USER_RESOURCE+ PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         return userService.deleteUser(id);
     }
 
-    @GetMapping(path = EcommerceConstant.USER_RESOURCE)
+    @GetMapping(path = PathVariableConfig.USER_RESOURCE)
     public ResponseEntity<?> getAllUsers() { // TODO: logicamente no es String V:
         return userService.getAllUsers();
     }

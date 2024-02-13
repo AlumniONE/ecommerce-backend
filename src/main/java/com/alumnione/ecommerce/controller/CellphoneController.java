@@ -1,6 +1,6 @@
 package com.alumnione.ecommerce.controller;
 
-import com.alumnione.ecommerce.constan.EcommerceConstant;
+import com.alumnione.ecommerce.config.PathVariableConfig;
 import com.alumnione.ecommerce.dto.CellphoneCreationDto;
 import com.alumnione.ecommerce.dto.CellphoneDataUpdateDto;
 import com.alumnione.ecommerce.entity.Cellphone;
@@ -20,35 +20,35 @@ import org.springframework.web.util.UriComponentsBuilder;
 // TODO: agregar el manejo de errores
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(path = EcommerceConstant.GENERIC_RESOURCE)
+@RequestMapping(path = PathVariableConfig.GENERIC_RESOURCE)
 public class CellphoneController {
 
     @Autowired
     CellphoneService cellphoneService;
 
-    @PostMapping(path = EcommerceConstant.CELLPHONE_RESOURCE)
+    @PostMapping(path = PathVariableConfig.CELLPHONE_RESOURCE)
     public ResponseEntity<Cellphone> createCellphone(@RequestBody @Valid CellphoneCreationDto cellphoneCreationDto, UriComponentsBuilder uriComponentsBuilder) {
         return cellphoneService.createCellphone(cellphoneCreationDto, uriComponentsBuilder);
     }
 
-    @GetMapping(path = EcommerceConstant.CELLPHONE_RESOURCE+EcommerceConstant.RESOURCE_ID)
+    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<Object> getCellphoneById(@PathVariable Long id) {
         return cellphoneService.findByIdCellphone(id);
     }
 
-    @PutMapping(path = EcommerceConstant.CELLPHONE_RESOURCE+EcommerceConstant.RESOURCE_ID)
+    @PutMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+PathVariableConfig.RESOURCE_ID)
     @Transactional
     public ResponseEntity<Object> updateCellphone(@PathVariable Long id, @RequestBody @Valid CellphoneDataUpdateDto cellphoneDataUpdateDto) {
         return cellphoneService.updateDataCellphone(id, cellphoneDataUpdateDto);
     }
 
-    @DeleteMapping(path = EcommerceConstant.CELLPHONE_RESOURCE+EcommerceConstant.RESOURCE_ID)
+    @DeleteMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+PathVariableConfig.RESOURCE_ID)
     @Transactional
     public ResponseEntity<String> deleteCellphone(@PathVariable Long id) {
         return cellphoneService.deleteCellphone(id);
     }
 
-    @GetMapping(path = EcommerceConstant.CELLPHONE_RESOURCE)
+    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE)
     public ResponseEntity<Page<Cellphone>> getAllCellphones(@PageableDefault(size = 10) Pageable pageable) {
         return cellphoneService.findAllCellphones(pageable);
     }
