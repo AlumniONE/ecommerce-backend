@@ -1,11 +1,12 @@
-package com.alumnione.ecommerce.constan;
-    /**
-     * Esta clase servira como una biblioteca de constantes para la estandarizacion de los endpoints
-     * de los controladores del proyecto.
-     *
-     *  Example: http://localhost:8080/GENERIC_RESOURCE/RESOURCE --> http://localhost:8080/ecommerce/orders
-     */
-public final class EcommerceConstant {
+package com.alumnione.ecommerce.config;
+
+/**
+ * Esta clase servira como una biblioteca de constantes para la estandarizacion de los endpoints
+ * de los controladores del proyecto.
+ * <p>
+ * Example: http://localhost:8080/GENERIC_RESOURCE/RESOURCE --> http://localhost:8080/ecommerce/orders
+ */
+public final class PathVariableConfig {
     //////////////////////////////////////// API VERSION ////////////////////////////////////////
     //private static final String API_VERSION = "/v1";
     //////////////////////////////////////// ECOMMERCE PATH'S //////////////////////////////////
@@ -22,4 +23,6 @@ public final class EcommerceConstant {
     public static final String CART_RESOURCE = "/carts"; // http://localhost:8080/ecommerce/carts
     public static final String ITEM_RESOURCE = "/items"; // http://localhost:8080/ecommerce/carts/{id}/items
     public static final String PAYMENT_RESOURCE = "/payments"; // http://localhost:8080/ecommerce/payments
+    public static final String PRODUCT_RESOURCE = "/products"; // http://localhost:8080/ecommerce/products
+
 }
