@@ -18,24 +18,23 @@ public class ShipmentController {
     private final ShipmentServiceImpl shipmentService;
 
     @PostMapping(path = PathVariableConfig.SHIPMENT_RESOURCE)
-    ResponseEntity<Shipment> createShipment(@RequestBody Shipment shipment){
-        return new ResponseEntity<>(shipmentService.createShipment(shipment), HttpStatus.CREATED);
+    ResponseEntity<String> createShipment(@RequestBody Shipment shipment){
+        return shipmentService.create(shipment);
     }
     @GetMapping(path = PathVariableConfig.SHIPMENT_RESOURCE)
     ResponseEntity<List<Shipment>> findAllShipments(){
-        return new ResponseEntity<>(shipmentService.findAllShipments(), HttpStatus.OK);
+        return shipmentService.getAll();
     }
     @GetMapping(path = PathVariableConfig.SHIPMENT_RESOURCE+PathVariableConfig.RESOURCE_ID)
     ResponseEntity<Shipment> findShipmentById(@PathVariable Long id){
-        return new ResponseEntity<>(shipmentService.findShipmentById(id), HttpStatus.FOUND);
+        return shipmentService.findById(id);
     }
     @PutMapping(path = PathVariableConfig.SHIPMENT_RESOURCE+PathVariableConfig.RESOURCE_ID)
-    ResponseEntity<Shipment> updateShipment(@PathVariable Long id, Shipment shipment){
-        return new ResponseEntity<>(shipmentService.updateShipment(id, shipment), HttpStatus.OK);
+    ResponseEntity<String> updateShipment(@PathVariable Long id, Shipment shipment){
+        return shipmentService.update(id,shipment);
     }
     @DeleteMapping(path = PathVariableConfig.SHIPMENT_RESOURCE+PathVariableConfig.RESOURCE_ID)
     ResponseEntity<String> deleteShipment(@PathVariable Long id){
-        shipmentService.deleteShipment(id);
-        return new ResponseEntity<>("Shipment deleted!", HttpStatus.NO_CONTENT);
+        return shipmentService.delete(id);
     }
 }
