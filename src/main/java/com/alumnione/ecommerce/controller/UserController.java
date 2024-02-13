@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alumnione.ecommerce.dto.UserCreationDto;
+import com.alumnione.ecommerce.dto.CustomerDto;
 import com.alumnione.ecommerce.service.UserService;
 
 import jakarta.validation.Valid;
@@ -36,7 +36,7 @@ public class UserController {
 	private final UserService userService;
 
     @PostMapping(path = PathVariableConfig.USER_RESOURCE)
-    public ResponseEntity<String> createUser(@RequestBody @Valid UserCreationDto userCreationDto, BindingResult bindingResult){
+    public ResponseEntity<String> createUser(@RequestBody @Valid CustomerDto customerDto, BindingResult bindingResult){
     	
     	if(bindingResult.hasErrors()) {
     		
@@ -50,7 +50,7 @@ public class UserController {
     		return ResponseEntity.badRequest().body(messages.toString());
     	}
     	
-    	return userService.createUser(userCreationDto);
+    	return userService.createUser(customerDto);
     }
 
     @GetMapping(path = PathVariableConfig.USER_RESOURCE+ PathVariableConfig.RESOURCE_ID)
@@ -60,7 +60,7 @@ public class UserController {
 
     @PutMapping(path = PathVariableConfig.USER_RESOURCE+ PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<?> updateUser(@PathVariable Long id,
-    									@RequestBody @Valid UserCreationDto userCreationDto,
+    									@RequestBody @Valid CustomerDto customerDto,
     									BindingResult bindingResult) {
     		
     	if(bindingResult.hasErrors()) {
@@ -74,7 +74,7 @@ public class UserController {
             
     		return ResponseEntity.badRequest().body(messages.toString());
     	}
-        return userService.updateUser(id, userCreationDto);
+        return userService.updateUser(id, customerDto);
     }
 
     @DeleteMapping(path = PathVariableConfig.USER_RESOURCE+ PathVariableConfig.RESOURCE_ID)

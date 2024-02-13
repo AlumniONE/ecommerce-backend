@@ -7,18 +7,15 @@ import com.alumnione.ecommerce.enumeration.UserType;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
+@Getter@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Builder
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,14 +35,6 @@ public class User {
 
     private String address;
 
-    @Column(name = "user_type")
-    @Enumerated(value = EnumType.STRING)
-    private UserType userType;
+    private String phoneNumber;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Order> orders = new HashSet<>();
-
-//  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
-    private Cart cart;
 }
