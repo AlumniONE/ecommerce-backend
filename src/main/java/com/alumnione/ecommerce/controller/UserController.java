@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alumnione.ecommerce.dto.CustomerDto;
-import com.alumnione.ecommerce.service.UserService;
+import com.alumnione.ecommerce.service.CustomerService;
 
 import jakarta.validation.Valid;
 
@@ -33,7 +33,7 @@ import jakarta.validation.Valid;
 @RequestMapping(path = PathVariableConfig.GENERIC_RESOURCE) // TODO: cambiar el nombre del recurso
 public class UserController {
 	
-	private final UserService userService;
+	private final CustomerService customerService;
 
     @PostMapping(path = PathVariableConfig.USER_RESOURCE)
     public ResponseEntity<String> createUser(@RequestBody @Valid CustomerDto customerDto, BindingResult bindingResult){
@@ -50,12 +50,12 @@ public class UserController {
     		return ResponseEntity.badRequest().body(messages.toString());
     	}
     	
-    	return userService.createUser(customerDto);
+    	return customerService.createUser(customerDto);
     }
 
     @GetMapping(path = PathVariableConfig.USER_RESOURCE+ PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
-        return userService.getUser(id);
+        return customerService.getUser(id);
     }
 
     @PutMapping(path = PathVariableConfig.USER_RESOURCE+ PathVariableConfig.RESOURCE_ID)
@@ -74,17 +74,17 @@ public class UserController {
             
     		return ResponseEntity.badRequest().body(messages.toString());
     	}
-        return userService.updateUser(id, customerDto);
+        return customerService.updateUser(id, customerDto);
     }
 
     @DeleteMapping(path = PathVariableConfig.USER_RESOURCE+ PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        return userService.deleteUser(id);
+        return customerService.deleteUser(id);
     }
 
     @GetMapping(path = PathVariableConfig.USER_RESOURCE)
     public ResponseEntity<?> getAllUsers() { // TODO: logicamente no es String V:
-        return userService.getAllUsers();
+        return customerService.getAllUsers();
     }
 
 }

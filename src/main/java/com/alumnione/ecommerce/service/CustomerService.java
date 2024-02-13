@@ -8,7 +8,7 @@ import com.alumnione.ecommerce.dto.CustomerDto;
 
 
 @Service
-public interface UserService {
+public interface CustomerService {
 	
 	public ResponseEntity<String> createUser(CustomerDto customerDto);
 	
