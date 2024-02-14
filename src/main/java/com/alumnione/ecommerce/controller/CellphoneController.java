@@ -49,7 +49,7 @@ public class CellphoneController {
         return cellphoneService.delete(id);
     }
 
-    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE)
+    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+"/allCellphones")
     public ResponseEntity<Page<Cellphone>> getAllCellphones(@PageableDefault(size = 10) Pageable pageable) {
         return cellphoneService.findAllCellphones(pageable);
     }
