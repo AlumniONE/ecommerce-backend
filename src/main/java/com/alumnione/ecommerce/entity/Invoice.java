@@ -1,10 +1,7 @@
 package com.alumnione.ecommerce.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 @Setter@Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +22,4 @@ public class Invoice {
     @Column(name = "total_amount")
     private Double totalAmount;
 
-    @OneToOne(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Order order;
-
-    @OneToOne
-    @JoinColumn(name = "payment_id")
-    private Payment payment;
 }
