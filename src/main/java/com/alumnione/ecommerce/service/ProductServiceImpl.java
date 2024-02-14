@@ -1,9 +1,8 @@
-package com.alumnione.ecommerce.service.impl;
+package com.alumnione.ecommerce.service;
 
 import com.alumnione.ecommerce.dto.ProductDto;
 import com.alumnione.ecommerce.entity.Product;
 import com.alumnione.ecommerce.repository.ProductRepository;
-import com.alumnione.ecommerce.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +49,7 @@ public class ProductServiceImpl implements CrudService<ProductDto,Product> {
 
             return new ResponseEntity<>("Product Updated",HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Product can't be update",HttpStatus.BAD_REQUEST);
     }
 
     @Override
@@ -64,7 +63,8 @@ public class ProductServiceImpl implements CrudService<ProductDto,Product> {
 
     @Override
     public ResponseEntity<List<Product>> getAll() {
-        return new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
+        if(!productRepository.findAll().isEmpty()) return new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
+        else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @Override

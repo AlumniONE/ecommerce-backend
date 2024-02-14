@@ -4,10 +4,7 @@ import java.util.List;
 
 import com.alumnione.ecommerce.enumeration.EOrderStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Table(name = "Orders")
 @Entity
@@ -15,6 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 
 public class Order {
     @Id
@@ -28,21 +26,5 @@ public class Order {
 
     @Column(name = "order_created_at")
     private String orderCreatedAt;
-
-    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "invoice_id")
-    private Invoice invoice;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Customer customer;
-
-    @ManyToMany
-    @JoinTable(
-    name = "order_cell",
-        joinColumns = @JoinColumn(name = "cellphone_id"),
-        inverseJoinColumns = @JoinColumn(name = "order_id")
-    )
-    private List<Cellphone> cellphones;
 
 }

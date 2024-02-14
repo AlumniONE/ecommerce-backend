@@ -2,9 +2,8 @@ package com.alumnione.ecommerce.controller;
 
 import com.alumnione.ecommerce.config.PathVariableConfig;
 import com.alumnione.ecommerce.entity.Shipment;
-import com.alumnione.ecommerce.service.impl.ShipmentServiceImpl;
+import com.alumnione.ecommerce.service.ShipmentServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

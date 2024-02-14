@@ -3,7 +3,7 @@ package com.alumnione.ecommerce.controller;
 import com.alumnione.ecommerce.config.PathVariableConfig;
 import com.alumnione.ecommerce.dto.ProductDto;
 import com.alumnione.ecommerce.entity.Product;
-import com.alumnione.ecommerce.service.impl.ProductServiceImpl;
+import com.alumnione.ecommerce.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ public class ProductController {
     }
 
     @GetMapping(path = PathVariableConfig.PRODUCT_RESOURCE)
-    public ResponseEntity<List<Product>> getAllProduct(){
+    public ResponseEntity<List<Product>> getAllProducts(){
         return productService.getAll();
     }
 

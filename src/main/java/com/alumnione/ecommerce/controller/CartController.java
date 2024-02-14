@@ -1,50 +1,44 @@
 package com.alumnione.ecommerce.controller;
 
 import com.alumnione.ecommerce.config.PathVariableConfig;
-import com.alumnione.ecommerce.dto.CartReturnDto;
-import com.alumnione.ecommerce.service.impl.CartServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alumnione.ecommerce.dto.CartDto;
+import com.alumnione.ecommerce.entity.Cart;
+import com.alumnione.ecommerce.service.CartServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
-// TODO: agregar la validacion de los datos de entrada
-// TODO: agregar el manejo de excepciones
-// TODO: agregar el manejo de errores
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(path = PathVariableConfig.GENERIC_RESOURCE)
 public class CartController {
-    @Autowired
-    private CartServiceImpl service;
+
+    private final CartServiceImpl cartService;
 
     @PostMapping(path = PathVariableConfig.CART_RESOURCE)
-    public ResponseEntity<String> createCart() {
-        //TODO: a cart will be create automatically when a user is created
-        return null;
+    public ResponseEntity<String> createCart(@RequestBody CartDto cartDto) {
+        return cartService.create(cartDto);
     }
 
-    @GetMapping(path = PathVariableConfig.CART_RESOURCE+PathVariableConfig.RESOURCE_ID)
-    public ResponseEntity<CartReturnDto> get(@PathVariable Long id) {
-        return ResponseEntity.ok(service.get(id));
+    @GetMapping(path = PathVariableConfig.CART_RESOURCE + PathVariableConfig.RESOURCE_ID)
+    public ResponseEntity<CartDto> findbyId(@PathVariable Long id) {
+        return cartService.findById(id);
     }
 
-
-//    @PostMapping(path = EcommerceConstant.CART_RESOURCE+EcommerceConstant.RESOURCE_ID)
-//    public ResponseEntity<CartReturnDto> clean(@PathVariable Long id) {
-//        return ResponseEntity.ok(service.clean(id));
-//    }
-
-    @PostMapping(path = PathVariableConfig.CART_RESOURCE+ PathVariableConfig.RESOURCE_ID+ PathVariableConfig.ITEM_RESOURCE+ PathVariableConfig.RESOURCE_ID_ITEM) //path = "{id}/item/{idItem}"
-    public ResponseEntity<CartReturnDto> addItem(@PathVariable Long id, @PathVariable Long idItem) {
-        return ResponseEntity.ok(service.addItem(id, idItem));
+    @GetMapping(path = PathVariableConfig.CART_RESOURCE)
+    public ResponseEntity<List<Cart>> getAllProducts() {
+        return cartService.getAll();
     }
 
-    @DeleteMapping(path = PathVariableConfig.CART_RESOURCE+ PathVariableConfig.RESOURCE_ID+ PathVariableConfig.ITEM_RESOURCE+ PathVariableConfig.RESOURCE_ID_ITEM)
-    public ResponseEntity<CartReturnDto> deleteItem(@PathVariable Long id, @PathVariable Long idItem) {
-        return ResponseEntity.ok(service.deleteItem(id, idItem));
+    @DeleteMapping(path = PathVariableConfig.CART_RESOURCE + PathVariableConfig.RESOURCE_ID)
+    public ResponseEntity<String> deleteCart(@PathVariable Long id) {
+        return cartService.delete(id);
     }
+
+    @PutMapping(path = PathVariableConfig.CART_RESOURCE+ PathVariableConfig.RESOURCE_ID)
+    public ResponseEntity<String> updateCart (@PathVariable Long id, @RequestBody CartDto cartDto){
+        return cartService.update(id, cartDto);
+    }
+
 }
