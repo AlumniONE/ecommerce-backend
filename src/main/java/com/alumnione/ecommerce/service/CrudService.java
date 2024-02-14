@@ -11,6 +11,7 @@ public interface CrudService<T,S> {
 
     public ResponseEntity<String> delete(Long id);
 
+    //TODO: Implement Pageable for all Service.
     public ResponseEntity<List<S>> getAll();
 
     public ResponseEntity<T> findById(Long id);
