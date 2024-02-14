@@ -3,7 +3,6 @@ package com.alumnione.ecommerce.service;
 import com.alumnione.ecommerce.dto.ProductDto;
 import com.alumnione.ecommerce.entity.Product;
 import com.alumnione.ecommerce.repository.ProductRepository;
-import com.alumnione.ecommerce.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -3,7 +3,6 @@ package com.alumnione.ecommerce.service;
 import com.alumnione.ecommerce.dto.PaymentDto;
 import com.alumnione.ecommerce.entity.Payment;
 import com.alumnione.ecommerce.repository.PaymentRepository;
-import com.alumnione.ecommerce.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,7 +65,7 @@ public class PaymentServiceImpl implements CrudService<PaymentDto, Payment> {
             .paymentType(payment.getPaymentType())
             .build();
 
-            return new ResponseEntity<PaymentDto>(paymentDto, HttpStatus.OK);
+            return new ResponseEntity<>(paymentDto, HttpStatus.OK);
         } else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
     }

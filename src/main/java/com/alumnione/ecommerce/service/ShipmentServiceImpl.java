@@ -2,7 +2,6 @@ package com.alumnione.ecommerce.service;
 
 import com.alumnione.ecommerce.entity.Shipment;
 import com.alumnione.ecommerce.repository.ShipmentRepository;
-import com.alumnione.ecommerce.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

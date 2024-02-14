@@ -1,55 +1,47 @@
 package com.alumnione.ecommerce.controller;
 
 import com.alumnione.ecommerce.config.PathVariableConfig;
-import com.alumnione.ecommerce.dto.CellphoneCreationDto;
-import com.alumnione.ecommerce.dto.CellphoneDataUpdateDto;
+import com.alumnione.ecommerce.dto.CellphoneDto;
 import com.alumnione.ecommerce.entity.Cellphone;
-import com.alumnione.ecommerce.service.CellphoneService;
+import com.alumnione.ecommerce.service.CellphoneServiceImpl;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
+import java.util.List;
 
-// TODO: agregar la validacion de los datos de entrada
-// TODO: agregar el manejo de excepciones
-// TODO: agregar el manejo de errores
-@CrossOrigin(origins = "*")
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(path = PathVariableConfig.GENERIC_RESOURCE)
 public class CellphoneController {
 
-    @Autowired
-    CellphoneService cellphoneService;
+    private final CellphoneServiceImpl cellphoneService;
 
     @PostMapping(path = PathVariableConfig.CELLPHONE_RESOURCE)
-    public ResponseEntity<Cellphone> createCellphone(@RequestBody @Valid CellphoneCreationDto cellphoneCreationDto, UriComponentsBuilder uriComponentsBuilder) {
-        return cellphoneService.createCellphone(cellphoneCreationDto, uriComponentsBuilder);
+    public ResponseEntity<String> createCellphone(@RequestBody @Valid CellphoneDto cellphoneDto) {
+        return cellphoneService.create(cellphoneDto);
     }
 
     @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+PathVariableConfig.RESOURCE_ID)
-    public ResponseEntity<Object> getCellphoneById(@PathVariable Long id) {
-        return cellphoneService.findByIdCellphone(id);
+    public ResponseEntity<CellphoneDto> findById(@PathVariable Long id) {
+        return cellphoneService.findById(id);
+    }
+
+    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE)
+    public ResponseEntity<List<Cellphone>> getAllCellphones() {
+        return cellphoneService.getAll();
     }
 
     @PutMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+PathVariableConfig.RESOURCE_ID)
     @Transactional
-    public ResponseEntity<Object> updateCellphone(@PathVariable Long id, @RequestBody @Valid CellphoneDataUpdateDto cellphoneDataUpdateDto) {
-        return cellphoneService.updateDataCellphone(id, cellphoneDataUpdateDto);
+    public ResponseEntity<String> updateCellphone(@PathVariable Long id, @RequestBody @Valid CellphoneDto cellphoneDto) {
+        return cellphoneService.update(id, cellphoneDto);
     }
 
     @DeleteMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+PathVariableConfig.RESOURCE_ID)
     @Transactional
     public ResponseEntity<String> deleteCellphone(@PathVariable Long id) {
-        return cellphoneService.deleteCellphone(id);
-    }
-
-    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE)
-    public ResponseEntity<Page<Cellphone>> getAllCellphones(@PageableDefault(size = 10) Pageable pageable) {
-        return cellphoneService.findAllCellphones(pageable);
+        return cellphoneService.delete(id);
     }
 }

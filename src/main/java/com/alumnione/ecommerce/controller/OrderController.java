@@ -3,11 +3,13 @@ package com.alumnione.ecommerce.controller;
 import com.alumnione.ecommerce.config.PathVariableConfig;
 import com.alumnione.ecommerce.dto.OrderDto;
 import com.alumnione.ecommerce.entity.Order;
-import com.alumnione.ecommerce.service.impl.OrderServiceImpl;
+import com.alumnione.ecommerce.service.OrderServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 // TODO: cambiar el valor de retorno por el valor correcto (DTO)
 // TODO: agregar la validacion de los datos de entrada
@@ -26,28 +28,27 @@ public class OrderController {
     private final OrderServiceImpl orderService;
 
     @PostMapping(path = PathVariableConfig.ORDER_RESOURCE)
-    public ResponseEntity<OrderDto> createOrder(@RequestBody @Valid Order order) {
-
-        return orderService.createOrder(order);
+    public ResponseEntity<String> createOrder(@RequestBody @Valid OrderDto orderDto) {
+        return orderService.create(orderDto);
     }
 
     @GetMapping(path = PathVariableConfig.ORDER_RESOURCE+PathVariableConfig.RESOURCE_ID)
-    public ResponseEntity<OrderDto> getOrderById(@PathVariable Long id) {
-        return orderService.findOrderById(id);
+    public ResponseEntity<OrderDto> findById(@PathVariable Long id) {
+        return orderService.findById(id);
     }
 
-    @PutMapping(path = PathVariableConfig.ORDER_RESOURCE+PathVariableConfig.RESOURCE_ID)
-    public ResponseEntity<String> updateOrder(@PathVariable Long id) {
-        return null;
+    @GetMapping(path = PathVariableConfig.ORDER_RESOURCE)
+    public ResponseEntity<List<Order>> getAllOrders() {
+        return orderService.getAll();
     }
 
     @DeleteMapping(path = PathVariableConfig.ORDER_RESOURCE+PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<String> deleteOrder(@PathVariable Long id) {
-        return null;
+        return orderService.delete(id);
     }
 
-    @GetMapping(path = PathVariableConfig.ORDER_RESOURCE)
-    public ResponseEntity<?> getAllOrders() {
-        return orderService.getAllOrder();
+    @PutMapping(path = PathVariableConfig.ORDER_RESOURCE+PathVariableConfig.RESOURCE_ID)
+    public ResponseEntity<String> updateOrder(@PathVariable Long id, @RequestBody OrderDto orderDto) {
+        return orderService.update(id,orderDto);
     }
 }

@@ -1,18 +1,10 @@
 package com.alumnione.ecommerce.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import com.alumnione.ecommerce.dto.ProductDto;
 import com.alumnione.ecommerce.entity.Customer;
-import com.alumnione.ecommerce.service.CrudService;
-import org.apache.tomcat.util.http.parser.HttpParser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.alumnione.ecommerce.dto.CustomerDto;
 import com.alumnione.ecommerce.repository.CustomerRepository;
 
@@ -34,7 +26,7 @@ public class CustomerServiceImpl implements CrudService<CustomerDto, Customer> {
         .build();
         customerRepository.save(newCustomer);
 
-        return new ResponseEntity<String>("Customer created", HttpStatus.OK);
+        return new ResponseEntity<>("Customer created", HttpStatus.OK);
     }
 
     @Override

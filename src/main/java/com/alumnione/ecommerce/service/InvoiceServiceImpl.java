@@ -1,7 +1,6 @@
 package com.alumnione.ecommerce.service;
 
 import com.alumnione.ecommerce.dto.InvoiceDto;
-import com.alumnione.ecommerce.dto.ProductDto;
 import com.alumnione.ecommerce.entity.Invoice;
 import com.alumnione.ecommerce.repository.InvoiceRepository;
 import lombok.RequiredArgsConstructor;

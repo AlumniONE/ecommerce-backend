@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.alumnione.ecommerce.config.PathVariableConfig;
 import com.alumnione.ecommerce.dto.PaymentDto;
-import com.alumnione.ecommerce.service.impl.PaymentServiceImpl;
+import com.alumnione.ecommerce.entity.Payment;
+import com.alumnione.ecommerce.service.PaymentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,25 +22,25 @@ public class PaymentController {
 
     @PostMapping(path = PathVariableConfig.PAYMENT_RESOURCE)
     public ResponseEntity<String> createPayment(@RequestBody PaymentDto paymentDto) {
-        return paymentService.createPayment(paymentDto);
+        return paymentService.create(paymentDto);
     }
 
     @GetMapping(path = PathVariableConfig.PAYMENT_RESOURCE+ PathVariableConfig.RESOURCE_ID)
-    public ResponseEntity<String> getPaymentById(@PathVariable Long id) {
-        return paymentService.getPaymentById(id);
+    public ResponseEntity<PaymentDto> findById(@PathVariable Long id) {
+        return paymentService.findById(id);
     }
 
     @PutMapping(path = PathVariableConfig.PAYMENT_RESOURCE+ PathVariableConfig.RESOURCE_ID)
-    public ResponseEntity<String> updatePayment(@PathVariable Long id, @RequestBody PaymentDto paymentDto) {
-        return paymentService.updatePayment(id,paymentDto);
+    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody PaymentDto paymentDto) {
+        return paymentService.update(id,paymentDto);
     }
 
     @DeleteMapping(path = PathVariableConfig.PAYMENT_RESOURCE+ PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<String> deletePayment(@PathVariable Long id) {
-        return paymentService.deletePayment(id);
+        return paymentService.delete(id);
     }
     @GetMapping(path = PathVariableConfig.PAYMENT_RESOURCE)
-    public ResponseEntity<List<String>> getAllPayments() {
-        return paymentService.getAllPayments();
+    public ResponseEntity<List<Payment>> getAllPayments() {
+        return paymentService.getAll();
     }
 }
