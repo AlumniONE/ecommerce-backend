@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 // TODO: agregar el manejo de errores
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping(path = PathVariableConfig.GENERIC_RESOURCE) // TODO: cambiar el nombre del recurso
 public class PaymentController {
 

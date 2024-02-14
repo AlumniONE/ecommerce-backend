@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping(path = PathVariableConfig.GENERIC_RESOURCE)
 public class InvoiceController {
 

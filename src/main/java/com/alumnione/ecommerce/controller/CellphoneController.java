@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping(path = PathVariableConfig.GENERIC_RESOURCE)
 public class CellphoneController {
 
