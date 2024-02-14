@@ -6,6 +6,9 @@ import com.alumnione.ecommerce.entity.Cellphone;
 import com.alumnione.ecommerce.service.CellphoneServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +32,10 @@ public class CellphoneController {
         return cellphoneService.findById(id);
     }
 
-    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE)
-    public ResponseEntity<List<Cellphone>> getAllCellphones() {
-        return cellphoneService.getAll();
-    }
+//    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE)
+//    public ResponseEntity<List<Cellphone>> getAllCellphones() {
+//        return cellphoneService.getAll();
+//    }
 
     @PutMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+PathVariableConfig.RESOURCE_ID)
     @Transactional
@@ -44,5 +47,10 @@ public class CellphoneController {
     @Transactional
     public ResponseEntity<String> deleteCellphone(@PathVariable Long id) {
         return cellphoneService.delete(id);
+    }
+
+    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE)
+    public ResponseEntity<Page<Cellphone>> getAllCellphones(@PageableDefault(size = 10) Pageable pageable) {
+        return cellphoneService.findAllCellphones(pageable);
     }
 }
