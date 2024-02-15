@@ -12,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -27,9 +28,14 @@ public class CellphoneController {
         return cellphoneService.create(cellphoneDto);
     }
 
-    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+PathVariableConfig.RESOURCE_ID)
+    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE + PathVariableConfig.RESOURCE_ID)
     public ResponseEntity<CellphoneDto> findById(@PathVariable Long id) {
         return cellphoneService.findById(id);
+    }
+
+    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE + "/getCellphoneById" + PathVariableConfig.RESOURCE_ID)
+    public ResponseEntity<Cellphone> getCellphoneById(@PathVariable Long id) {
+        return cellphoneService.getCellphoneById(id);
     }
 
 //    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE)
@@ -37,19 +43,19 @@ public class CellphoneController {
 //        return cellphoneService.getAll();
 //    }
 
-    @PutMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+PathVariableConfig.RESOURCE_ID)
+    @PutMapping(path = PathVariableConfig.CELLPHONE_RESOURCE + PathVariableConfig.RESOURCE_ID)
     @Transactional
     public ResponseEntity<String> updateCellphone(@PathVariable Long id, @RequestBody @Valid CellphoneDto cellphoneDto) {
         return cellphoneService.update(id, cellphoneDto);
     }
 
-    @DeleteMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+PathVariableConfig.RESOURCE_ID)
+    @DeleteMapping(path = PathVariableConfig.CELLPHONE_RESOURCE + PathVariableConfig.RESOURCE_ID)
     @Transactional
     public ResponseEntity<String> deleteCellphone(@PathVariable Long id) {
         return cellphoneService.delete(id);
     }
 
-    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE+"/allCellphones")
+    @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE + "/allCellphones")
     public ResponseEntity<Page<Cellphone>> getAllCellphones(@PageableDefault(size = 10) Pageable pageable) {
         return cellphoneService.findAllCellphones(pageable);
     }
