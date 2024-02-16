@@ -4,6 +4,8 @@ import com.alumnione.ecommerce.dto.OrderDto;
 import com.alumnione.ecommerce.entity.Order;
 import com.alumnione.ecommerce.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -57,10 +59,9 @@ public class OrderServiceImpl implements CrudService<OrderDto, Order> {
     }
 
     @Override
-    public ResponseEntity<List<Order>> getAll() {
-
+    public ResponseEntity<Page<Order>> getAll(Pageable pageable) {
         if (!orderRepository.findAll().isEmpty()) return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        else return new ResponseEntity<>(orderRepository.findAll(), HttpStatus.OK);
+        else return new ResponseEntity<>(orderRepository.findAll(pageable), HttpStatus.OK);
     }
 
     @Override
