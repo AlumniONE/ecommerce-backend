@@ -87,10 +87,10 @@ public class CellphoneServiceImpl implements CrudService<CellphoneDto, Cellphone
     }
 
     @Override
-    public ResponseEntity<List<Cellphone>> getAll() {
-        if (!cellphoneRepository.findAll().isEmpty())
-            return new ResponseEntity<>(cellphoneRepository.findAll(), HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Page<Cellphone>> getAll(Pageable pageable){
+        if (!cellphoneRepository.findAll().isEmpty()){
+            return new ResponseEntity<>(cellphoneRepository.findAll(pageable), HttpStatus.OK);
+        }else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @Override
@@ -119,10 +119,6 @@ public class CellphoneServiceImpl implements CrudService<CellphoneDto, Cellphone
 
             return new ResponseEntity<>(cellphoneDto, HttpStatus.OK);
         } else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
-    public ResponseEntity<Page<Cellphone>> findAllCellphones(Pageable pageable) {
-        return ResponseEntity.ok(cellphoneRepository.findAll(pageable));
     }
 
     public ResponseEntity<Cellphone> getCellphoneById(Long id) {

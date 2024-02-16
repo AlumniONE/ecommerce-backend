@@ -1,5 +1,7 @@
 package com.alumnione.ecommerce.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -11,8 +13,7 @@ public interface CrudService<T,S> {
 
     public ResponseEntity<String> delete(Long id);
 
-    //TODO: Implement Pageable for all Service.
-    public ResponseEntity<List<S>> getAll();
+    public ResponseEntity<Page<S>> getAll(Pageable pageable);
 
     public ResponseEntity<T> findById(Long id);
 }
