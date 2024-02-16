@@ -4,6 +4,8 @@ import com.alumnione.ecommerce.dto.InvoiceDto;
 import com.alumnione.ecommerce.entity.Invoice;
 import com.alumnione.ecommerce.repository.InvoiceRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -55,8 +57,8 @@ public class InvoiceServiceImpl implements CrudService<InvoiceDto, Invoice> {
     }
 
     @Override
-    public ResponseEntity<List<Invoice>> getAll() {
-        if (!invoiceRepository.findAll().isEmpty()) return new ResponseEntity<>(invoiceRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Invoice>> getAll(Pageable pageable) {
+        if (!invoiceRepository.findAll().isEmpty()) return new ResponseEntity<>(invoiceRepository.findAll(pageable), HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
