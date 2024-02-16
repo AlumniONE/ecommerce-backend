@@ -4,6 +4,8 @@ import com.alumnione.ecommerce.dto.ProductDto;
 import com.alumnione.ecommerce.entity.Product;
 import com.alumnione.ecommerce.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -62,8 +64,8 @@ public class ProductServiceImpl implements CrudService<ProductDto,Product> {
     }
 
     @Override
-    public ResponseEntity<List<Product>> getAll() {
-        if(!productRepository.findAll().isEmpty()) return new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Product>> getAll(Pageable pageable) {
+        if(!productRepository.findAll().isEmpty()) return new ResponseEntity<>(productRepository.findAll(pageable), HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
