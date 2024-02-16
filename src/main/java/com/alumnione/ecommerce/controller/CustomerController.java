@@ -6,6 +6,9 @@ import com.alumnione.ecommerce.config.PathVariableConfig;
 import com.alumnione.ecommerce.entity.Customer;
 import com.alumnione.ecommerce.service.CustomerServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,8 +38,8 @@ public class CustomerController {
     }
 
     @GetMapping(path = PathVariableConfig.USER_RESOURCE)
-    public ResponseEntity<List<Customer>> getAllProduct(){
-        return customerService.getAll();
+    public ResponseEntity<Page<Customer>> getAllProduct(@PageableDefault(size = 10) Pageable pageable){
+        return customerService.getAll(pageable);
     }
 
     @DeleteMapping(path = PathVariableConfig.USER_RESOURCE+ PathVariableConfig.RESOURCE_ID)
