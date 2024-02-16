@@ -5,6 +5,9 @@ import com.alumnione.ecommerce.dto.InvoiceDto;
 import com.alumnione.ecommerce.entity.Invoice;
 import com.alumnione.ecommerce.service.InvoiceServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +34,8 @@ public class InvoiceController {
     }
 
     @GetMapping(path = PathVariableConfig.INVOICE_RESOURCE)
-    public ResponseEntity<List<Invoice>> getAllInvoices() {
-        return this.invoiceService.getAll();
+    public ResponseEntity<Page<Invoice>> getAllInvoices(@PageableDefault(size = 10) Pageable pageable) {
+        return this.invoiceService.getAll(pageable);
     }
 
     @DeleteMapping(path = PathVariableConfig.INVOICE_RESOURCE + PathVariableConfig.RESOURCE_ID)
