@@ -5,6 +5,8 @@ import com.alumnione.ecommerce.dto.CartDto;
 import com.alumnione.ecommerce.entity.Cart;
 import com.alumnione.ecommerce.service.CartServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -28,8 +30,8 @@ public class CartController {
     }
 
     @GetMapping(path = PathVariableConfig.CART_RESOURCE)
-    public ResponseEntity<List<Cart>> getAllProducts() {
-        return cartService.getAll();
+    public ResponseEntity<Page<Cart>> getAllProducts(Pageable pageable) {
+        return cartService.getAll(pageable);
     }
 
     @DeleteMapping(path = PathVariableConfig.CART_RESOURCE + PathVariableConfig.RESOURCE_ID)
