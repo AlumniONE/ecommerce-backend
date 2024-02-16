@@ -3,6 +3,8 @@ package com.alumnione.ecommerce.service;
 import com.alumnione.ecommerce.entity.Shipment;
 import com.alumnione.ecommerce.repository.ShipmentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,8 +29,8 @@ public class ShipmentServiceImpl implements CrudService<Shipment, Shipment> {
     }
 
     @Override
-    public ResponseEntity<List<Shipment>> getAll() {
-        return new ResponseEntity<>(shipmentRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Shipment>> getAll(Pageable pageable) {
+        return new ResponseEntity<>(shipmentRepository.findAll(pageable), HttpStatus.OK);
     }
 
     @Override
