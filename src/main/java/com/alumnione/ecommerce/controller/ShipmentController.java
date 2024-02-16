@@ -4,6 +4,9 @@ import com.alumnione.ecommerce.config.PathVariableConfig;
 import com.alumnione.ecommerce.entity.Shipment;
 import com.alumnione.ecommerce.service.ShipmentServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +25,8 @@ public class ShipmentController {
         return shipmentService.create(shipment);
     }
     @GetMapping(path = PathVariableConfig.SHIPMENT_RESOURCE)
-    ResponseEntity<List<Shipment>> findAllShipments(){
-        return shipmentService.getAll();
+    ResponseEntity<Page<Shipment>> findAllShipments(@PageableDefault(size = 10) Pageable pageable){
+        return shipmentService.getAll(pageable);
     }
     @GetMapping(path = PathVariableConfig.SHIPMENT_RESOURCE+PathVariableConfig.RESOURCE_ID)
     ResponseEntity<Shipment> findShipmentById(@PathVariable Long id){
