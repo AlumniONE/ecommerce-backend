@@ -2,6 +2,8 @@ package com.alumnione.ecommerce.service;
 
 import java.util.List;
 import com.alumnione.ecommerce.entity.Customer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -56,8 +58,8 @@ public class CustomerServiceImpl implements CrudService<CustomerDto, Customer> {
 
     }
 
-    public ResponseEntity<List<Customer>> getAll() {
-        if (!customerRepository.findAll().isEmpty()) return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Customer>> getAll(Pageable pageable) {
+        if (!customerRepository.findAll().isEmpty()) return new ResponseEntity<>(customerRepository.findAll(pageable), HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
