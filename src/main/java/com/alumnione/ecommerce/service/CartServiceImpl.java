@@ -10,6 +10,8 @@ import com.alumnione.ecommerce.repository.CellphoneRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
@@ -64,8 +66,8 @@ public class CartServiceImpl implements CrudService<CartDto, Cart> {
     }
 
     @Override
-    public ResponseEntity<List<Cart>> getAll() {
-        if (!cartRepository.findAll().isEmpty()) return new ResponseEntity<>(cartRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Cart>> getAll(Pageable pageable) {
+        if (!cartRepository.findAll().isEmpty()) return new ResponseEntity<>(cartRepository.findAll(pageable), HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 

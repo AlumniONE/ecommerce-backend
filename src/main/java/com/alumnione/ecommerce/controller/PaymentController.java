@@ -7,6 +7,9 @@ import com.alumnione.ecommerce.dto.PaymentDto;
 import com.alumnione.ecommerce.entity.Payment;
 import com.alumnione.ecommerce.service.PaymentServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +44,7 @@ public class PaymentController {
         return paymentService.delete(id);
     }
     @GetMapping(path = PathVariableConfig.PAYMENT_RESOURCE)
-    public ResponseEntity<List<Payment>> getAllPayments() {
-        return paymentService.getAll();
+    public ResponseEntity<Page<Payment>> getAllPayments(@PageableDefault(size = 10) Pageable pageable) {
+        return paymentService.getAll(pageable);
     }
 }

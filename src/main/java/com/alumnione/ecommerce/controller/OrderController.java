@@ -6,6 +6,9 @@ import com.alumnione.ecommerce.entity.Order;
 import com.alumnione.ecommerce.service.OrderServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +42,8 @@ public class OrderController {
     }
 
     @GetMapping(path = PathVariableConfig.ORDER_RESOURCE)
-    public ResponseEntity<List<Order>> getAllOrders() {
-        return orderService.getAll();
+    public ResponseEntity<Page<Order>> getAllOrders(@PageableDefault(size = 10) Pageable pageable) {
+        return orderService.getAll(pageable);
     }
 
     @DeleteMapping(path = PathVariableConfig.ORDER_RESOURCE+PathVariableConfig.RESOURCE_ID)

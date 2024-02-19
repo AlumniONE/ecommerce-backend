@@ -4,6 +4,8 @@ import com.alumnione.ecommerce.dto.PaymentDto;
 import com.alumnione.ecommerce.entity.Payment;
 import com.alumnione.ecommerce.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -53,8 +55,8 @@ public class PaymentServiceImpl implements CrudService<PaymentDto, Payment> {
     }
 
     @Override
-    public ResponseEntity<List<Payment>> getAll() {
-        return new ResponseEntity<>(paymentRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Payment>> getAll(Pageable pageable) {
+        return new ResponseEntity<>(paymentRepository.findAll(pageable), HttpStatus.OK);
     }
 
     @Override

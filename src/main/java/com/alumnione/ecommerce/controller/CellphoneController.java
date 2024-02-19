@@ -57,6 +57,6 @@ public class CellphoneController {
 
     @GetMapping(path = PathVariableConfig.CELLPHONE_RESOURCE + "/allCellphones")
     public ResponseEntity<Page<Cellphone>> getAllCellphones(@PageableDefault(size = 10) Pageable pageable) {
-        return cellphoneService.findAllCellphones(pageable);
+        return cellphoneService.getAll(pageable);
     }
 }
