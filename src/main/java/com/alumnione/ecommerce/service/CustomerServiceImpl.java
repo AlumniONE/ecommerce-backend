@@ -1,6 +1,6 @@
 package com.alumnione.ecommerce.service;
 
-import java.util.List;
+
 import com.alumnione.ecommerce.entity.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,33 +20,46 @@ public class CustomerServiceImpl implements CrudService<CustomerDto, Customer> {
 
     public ResponseEntity<String> create(CustomerDto customerDto) {
         var newCustomer = Customer.builder()
-        .firstName(customerDto.firstName())
-        .lastName(customerDto.lastName())
-        .email(customerDto.email())
-        .password(customerDto.password())
-        .phoneNumber(customerDto.phoneNumber())
-        .build();
+                .firstName(customerDto.firstName())
+                .lastName(customerDto.lastName())
+                .email(customerDto.email())
+                .password(customerDto.password())
+                .address(customerDto.address())
+                .phoneNumber(customerDto.phoneNumber())
+                .build();
         customerRepository.save(newCustomer);
 
-        return new ResponseEntity<>("Customer created", HttpStatus.OK);
+        return new ResponseEntity<>("Customer created", HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<String> update(Long id, CustomerDto customerDto) {
-        if (id > 0 && customerRepository.existsById(id)) {
-            var customerUpdate = Customer.builder()
-            .id(id)
-            .firstName(customerDto.firstName())
-            .lastName(customerDto.lastName())
-            .email(customerDto.email())
-            .password(customerDto.password())
-            .phoneNumber(customerDto.phoneNumber())
-            .build();
-            customerRepository.save(customerUpdate);
-
-            return new ResponseEntity<>("Customer Updated", HttpStatus.OK);
+        /* var obj = customerRepository.getReferenceById(id);
+        if (!id.equals(obj.getId())) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if(obj.getFirstName().equalsIgnoreCase(customerDto.firstName())) obj.setFirstName(customerDto.firstName());
+        if(obj.getLastName().equalsIgnoreCase(customerDto.lastName())) obj.setLastName(customerDto.lastName());
+        if(obj.getEmail().equalsIgnoreCase(customerDto.email())) obj.setEmail(customerDto.email());
+        if(obj.getPassword().equalsIgnoreCase(customerDto.password())) obj.setPassword(customerDto.password());
+        if(obj.getAddress().equalsIgnoreCase(customerDto.address())) obj.setAddress(customerDto.address());
+        if(obj.getPhoneNumber().equalsIgnoreCase(customerDto.phoneNumber())) obj.setPhoneNumber(customerDto.phoneNumber());
+        customerRepository.save(obj);*/
+
+        if(customerRepository.existsById(id)){
+
+            Customer cstm = customerRepository.getReferenceById(id);
+            cstm.setFirstName(customerDto.firstName());
+            cstm.setLastName(customerDto.lastName());
+            cstm.setEmail(customerDto.email());
+            cstm.setPassword(customerDto.password());
+            cstm.setAddress(customerDto.address());
+            cstm.setPhoneNumber(customerDto.phoneNumber());
+            customerRepository.save(cstm);
+
+            return new ResponseEntity<>("Customer Updated", HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>("Customer not found!", HttpStatus.NOT_FOUND );
     }
 
     @Override
@@ -59,7 +72,8 @@ public class CustomerServiceImpl implements CrudService<CustomerDto, Customer> {
     }
 
     public ResponseEntity<Page<Customer>> getAll(Pageable pageable) {
-        if (!customerRepository.findAll().isEmpty()) return new ResponseEntity<>(customerRepository.findAll(pageable), HttpStatus.OK);
+        if (!customerRepository.findAll().isEmpty())
+            return new ResponseEntity<>(customerRepository.findAll(pageable), HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
@@ -67,16 +81,23 @@ public class CustomerServiceImpl implements CrudService<CustomerDto, Customer> {
     public ResponseEntity<CustomerDto> findById(Long id) {
         if (id != null && id > 0 && customerRepository.existsById(id)) {
             var customerReference = customerRepository.getReferenceById(id);
-
-            var customerDto = CustomerDto.builder()
-            .firstName(customerReference.getFirstName())
-            .lastName(customerReference.getLastName())
-            .email(customerReference.getEmail())
-            .password(customerReference.getPassword())
-            .phoneNumber(customerReference.getPhoneNumber())
-            .build();
-
+            CustomerDto customerDto = new CustomerDto(
+                    customerReference.getId(),
+                    customerReference.getFirstName(),
+                    customerReference.getLastName(),
+                    customerReference.getEmail(),
+                    customerReference.getPassword(),
+                    customerReference.getAddress(),
+                    customerReference.getPhoneNumber()
+            );
             return new ResponseEntity<>(customerDto, HttpStatus.OK);
-        } else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//            var customerDto = CustomerDto.builder()
+//            .firstName(customerReference.getFirstName())
+//            .lastName(customerReference.getLastName())
+//            .email(customerReference.getEmail())
+//            .password(customerReference.getPassword())
+//            .phoneNumber(customerReference.getPhoneNumber())
+//            .build();
+        } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

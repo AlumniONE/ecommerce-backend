@@ -6,5 +6,5 @@ import com.alumnione.ecommerce.entity.Cellphone;
 
 
 @Repository
-public interface CellphoneRepository extends CrudRepository<Cellphone, Long>{
+public interface CellphoneRepository extends IGenericRepo<Cellphone, Long> {
 }

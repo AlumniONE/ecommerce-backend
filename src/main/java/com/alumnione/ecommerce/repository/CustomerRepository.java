@@ -4,5 +4,5 @@ import com.alumnione.ecommerce.entity.Customer;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerRepository extends CrudRepository<Customer, Long> {
+public interface CustomerRepository extends IGenericRepo<Customer, Long> {
 }

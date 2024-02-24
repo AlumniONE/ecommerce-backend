@@ -1,13 +1,8 @@
 package com.alumnione.ecommerce.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import com.alumnione.ecommerce.enumeration.UserType;
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Table(name = "users")
@@ -15,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@DynamicUpdate
 public class Customer {
 
     @Id
@@ -28,7 +24,6 @@ public class Customer {
     @Column(name = "last_name")
     private String lastName;
 
-    @Email()
     private String email;
 
     private String password;
