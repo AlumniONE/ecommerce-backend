@@ -50,7 +50,6 @@ public class CellphoneServiceImpl implements CrudService<CellphoneDto, Cellphone
     @Override
     public ResponseEntity<String> update(Long id, CellphoneDto cellphoneDto) {
         if (id > 0 && cellphoneRepository.existsById(id)) {
-
             var cellphoneUpdate = Cellphone.builder()
             .id(id)
             .brand(cellphoneDto.brand())

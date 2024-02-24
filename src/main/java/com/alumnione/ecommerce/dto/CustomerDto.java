@@ -1,35 +1,40 @@
 package com.alumnione.ecommerce.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Builder;
 
 @Builder
 public record CustomerDto(
-		
-        @NotBlank(message = "First name is required")
-        @Size(max = 20, message = "The first name must not exceed 20 characters")
+		Long id,
+
+        @NotEmpty(message = "This property cannot be empty or null")
+        @Pattern(regexp = "^[a-zA-Z]+$", message = "Name must be a string")
+        @Size(min =3, max = 100, message = "The first name must not exceed 20 characters")
         String firstName,
-        
-        @NotBlank(message = "Last name is required")
-        @Size(max = 20, message = "The last name must not exceed 20 characters")
+
+        @NotEmpty(message = "This property cannot be empty or null")
+        @Pattern(regexp = "^[a-zA-Z]+$", message = "Last Name must be a string")
+        @Size(min = 3, max = 100, message = "The last name must not exceed 20 characters")
         String lastName,
-        
-        @NotBlank(message = "Email is required")
+
+        @NotEmpty(message = "The e-mail field must no be empty")
         @Email(message = "This field should be email format")
-        @Size(max = 30, message = "The email must not exceed 30 characters")
         String email,
-        
-        @NotBlank(message = "Password is required")
-        @Size(max = 20, message = "The password must not exceed 20 characters")
+
+        //Checks that a password has a minimum of
+        // 6 characters, at least 1 uppercase letter, 1 lowercase letter, and 1 number with no spaces.
+//        @Pattern(regexp = "^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{6,})\\S$\n",
+//        message = "Safe Password that allow only with a number, a lowercase, a uppercase, and a special character")
+        @NotNull(message = "Password is required")
+        @NotEmpty(message = "The password field must no be empty")
+        @Size(min =8, max = 60, message = "The password must not exceed 20 characters")
         String password,
-        
-        @Size(max = 30, message = "The address must not exceed 30 characters")
+
+        @Size(min = 3, max = 100, message = "The address must not exceed 30 characters")
         String address,
 
-        @NotNull(message = "Phone number is required")
+        @NotEmpty(message = "The phone number field must no be empty")
+        @Pattern(regexp = "[0-9]+")
         String phoneNumber
 ) {
 }

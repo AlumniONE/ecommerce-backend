@@ -5,7 +5,7 @@ import com.alumnione.ecommerce.entity.Product;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends CrudRepository<Product,Long> {
+public interface ProductRepository extends IGenericRepo<Product,Long> {
 
     ProductDto findBySKU(String SKU);
 }
