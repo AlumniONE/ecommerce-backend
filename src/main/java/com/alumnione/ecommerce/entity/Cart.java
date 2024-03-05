@@ -21,4 +21,6 @@ public class Cart {
 
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
+
+    private String checkSum;
 }

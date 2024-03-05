@@ -70,4 +70,6 @@ public class Cellphone {
 
     @Column(name = "image")
     private String image;
+
+    private String checkSum;
 }

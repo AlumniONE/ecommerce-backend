@@ -17,4 +17,6 @@ public class Payment {
 
     @Column(name = "payment_type")
     private String paymentType;
+
+    private String checkSum;
 }
