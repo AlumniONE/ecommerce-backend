@@ -27,4 +27,6 @@ public class Order {
     @Column(name = "order_created_at")
     private String orderCreatedAt;
 
+    private String checkSum;
+
 }

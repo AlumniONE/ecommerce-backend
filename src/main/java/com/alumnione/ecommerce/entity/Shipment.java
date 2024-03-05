@@ -21,4 +21,5 @@ public class Shipment {
     private String state;
     private String country;
     private String zip_code;
+    private String checkSum;
 }

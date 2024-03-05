@@ -22,4 +22,6 @@ public class Invoice {
     @Column(name = "total_amount")
     private Double totalAmount;
 
+    private String checkSum;
+
 }
