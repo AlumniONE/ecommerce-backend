@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Getter@Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -14,7 +15,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String SKU;
-    private String descripion;
+    private String description;
     private float price;
     private int stock;
+
+    @ManyToOne
+    private Category category;
+
+    @Column(name = "features", columnDefinition = "json")
+    private String features; //specifications
 }
