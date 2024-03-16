@@ -32,11 +32,12 @@ public class CategoryServiceImpl implements CrudService<CategoryDto, Category> {
     }
 
     @Override
-    public ResponseEntity<String> update(Long id, CategoryDto classDto) {
+    public ResponseEntity<String> update(Long id, CategoryDto categoryDto) {
         if (id > 0 && categoryRepository.existsById(id)) {
 
             var categoryUpdate = Category.builder()
-                    .name(classDto.name())
+                    .id(id)
+                    .name(categoryDto.name())
                     .build();
             categoryRepository.save(categoryUpdate);
 
