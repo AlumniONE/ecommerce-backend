@@ -24,5 +24,5 @@ public final class PathVariableConfig {
     public static final String ITEM_RESOURCE = "/items"; // http://localhost:8080/ecommerce/carts/{id}/items
     public static final String PAYMENT_RESOURCE = "/payments"; // http://localhost:8080/ecommerce/payments
     public static final String PRODUCT_RESOURCE = "/products"; // http://localhost:8080/ecommerce/products
-
+    public static final String CATEGORY_RESOURCE = "/categories"; // http://localhost:8080/ecommerce/categories
 }
