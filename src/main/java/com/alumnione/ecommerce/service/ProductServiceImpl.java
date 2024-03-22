@@ -39,11 +39,13 @@ public class ProductServiceImpl implements CrudService<ProductDto, ProductRespon
             if (category != null) {
                 var newProduct = Product.builder()
                         .SKU(productDto.SKU())
+                        .brand(productDto.brand())
                         .description(productDto.description())
                         .price(productDto.price())
                         .stock(productDto.stock())
                         .category(category)
                         .features(featureString)
+                        .image(productDto.image())
                         .build();
 
                 productRepository.save(newProduct);
@@ -69,11 +71,13 @@ public class ProductServiceImpl implements CrudService<ProductDto, ProductRespon
                 var productUpdate = Product.builder()
                         .id(id)
                         .SKU(productDto.SKU())
+                        .brand(productDto.brand())
                         .description(productDto.description())
                         .price(productDto.price())
                         .stock(productDto.stock())
                         .category(category)
                         .features(featureString)
+                        .image(productDto.image())
                         .build();
                 productRepository.save(productUpdate);
 
@@ -114,11 +118,13 @@ public class ProductServiceImpl implements CrudService<ProductDto, ProductRespon
             JsonNode featureJson = objectMapper.readTree(productReference.getFeatures());
             var productDto = ProductDto.builder()
                     .SKU(productReference.getSKU())
+                    .brand(productReference.getBrand())
                     .description(productReference.getDescription())
                     .price(productReference.getPrice())
                     .stock(productReference.getStock())
                     .category(productReference.getCategory().getName())
                     .features(featureJson)
+                    .image(productReference.getImage())
                     .build();
 
             return new ResponseEntity<>(productDto, HttpStatus.OK);
@@ -133,11 +139,13 @@ public class ProductServiceImpl implements CrudService<ProductDto, ProductRespon
         return ProductResponseDto.builder()
                 .id(product.getId())
                 .SKU(product.getSKU())
+                .brand(product.getBrand())
                 .description(product.getDescription())
                 .price(product.getPrice())
                 .stock(product.getStock())
                 .features(featuresJson)
                 .category(product.getCategory())
+                .image(product.getImage())
                 .build();
     }
 }

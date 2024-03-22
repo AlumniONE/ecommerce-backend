@@ -8,9 +8,11 @@ import lombok.Builder;
 public record ProductResponseDto(
         Long id,
         String SKU,
+        String brand,
         String description,
         float price,
         int stock,
         Category category,
-        JsonNode features) {
+        JsonNode features,
+        String image) {
 }
