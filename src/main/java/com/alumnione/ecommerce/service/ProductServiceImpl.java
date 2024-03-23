@@ -1,7 +1,6 @@
 package com.alumnione.ecommerce.service;
 
 import com.alumnione.ecommerce.dto.ProductDto;
-import com.alumnione.ecommerce.dto.ProductResponseDto;
 import com.alumnione.ecommerce.entity.Category;
 import com.alumnione.ecommerce.entity.Product;
 import com.alumnione.ecommerce.repository.CategoryRepository;
@@ -19,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl implements CrudService<ProductDto, ProductResponseDto> {
+public class ProductServiceImpl implements CrudService<ProductDto, Product> {
 
     private final ProductRepository productRepository;
 
@@ -99,11 +98,9 @@ public class ProductServiceImpl implements CrudService<ProductDto, ProductRespon
     }
 
     @Override
-    public ResponseEntity<Page<ProductResponseDto>> getAll(Pageable pageable) {
+    public ResponseEntity<Page<Product>> getAll(Pageable pageable) {
         if (!productRepository.findAll().isEmpty()) {
-            Page<ProductResponseDto> products = productRepository.findAll(pageable).map(this::mapDataAndJsonToDto);
-
-            return new ResponseEntity<>(products, HttpStatus.OK);
+            return new ResponseEntity<>( productRepository.findAll(pageable), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -129,23 +126,5 @@ public class ProductServiceImpl implements CrudService<ProductDto, ProductRespon
 
             return new ResponseEntity<>(productDto, HttpStatus.OK);
         } else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
-    @SneakyThrows
-    private ProductResponseDto mapDataAndJsonToDto(Product product) {
-//        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode featuresJson = objectMapper.readTree(product.getFeatures());
-
-        return ProductResponseDto.builder()
-                .id(product.getId())
-                .SKU(product.getSKU())
-                .brand(product.getBrand())
-                .description(product.getDescription())
-                .price(product.getPrice())
-                .stock(product.getStock())
-                .features(featuresJson)
-                .category(product.getCategory())
-                .image(product.getImage())
-                .build();
     }
 }

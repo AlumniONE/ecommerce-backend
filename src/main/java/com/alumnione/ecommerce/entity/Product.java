@@ -1,5 +1,6 @@
 package com.alumnione.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class Product {
     @ManyToOne
     private Category category;
 
+    @JsonRawValue
     @Column(name = "features", columnDefinition = "json")
     private String features; //Details and specifications of product
 
