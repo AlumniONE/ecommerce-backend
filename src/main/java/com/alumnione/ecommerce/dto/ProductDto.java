@@ -6,9 +6,12 @@ import lombok.Builder;
 @Builder
 public record ProductDto(
         String SKU,
+        String brand,
         String description,
         float price,
         int stock,
         String category,
-        JsonNode features) {
+        JsonNode features,
+        String image
+        /*String checkSum*/) {
 }

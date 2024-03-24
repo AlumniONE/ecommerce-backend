@@ -2,7 +2,6 @@ package com.alumnione.ecommerce.controller;
 
 import com.alumnione.ecommerce.config.PathVariableConfig;
 import com.alumnione.ecommerce.dto.ProductDto;
-import com.alumnione.ecommerce.dto.ProductResponseDto;
 import com.alumnione.ecommerce.entity.Product;
 import com.alumnione.ecommerce.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +29,7 @@ public class ProductController {
     }
 
     @GetMapping(path = PathVariableConfig.PRODUCT_RESOURCE)
-    public ResponseEntity<Page<ProductResponseDto>> getAllProducts(@PageableDefault(size = 10) Pageable pageable) {
+    public ResponseEntity<Page<Product>> getAllProducts(@PageableDefault(size = 10) Pageable pageable) {
         return productService.getAll(pageable);
     }
 
